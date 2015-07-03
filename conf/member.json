@@ -1,0 +1,63 @@
+{ "members" :
+  [ { "id" : "ykkim"
+    , "name" : "Yongki Kim"
+    , "email" : "ykkim@ropas.snu.ac.kr"
+    , "lab" : "ropas"
+    }
+  , { "id" : "yhyoon"
+    , "name" : "Yongho Yoon"
+    , "email" : "yhyoon@ropas.snu.ac.kr"
+    , "lab" : "ropas"
+    }
+  , { "id" : "jgkim"
+    , "name" : "Jonggwon Kim"
+    , "email" : "jgkim@ropas.snu.ac.kr"
+    , "lab" : "ropas"
+    }
+  , { "id" : "skcho"
+    , "name" : "Sungkeun Cho"
+    , "email" : "skcho@ropas.snu.ac.kr"
+    , "lab" : "ropas"
+    }
+  , { "id" : "dklee"
+    , "name" : "Dongkwon Lee"
+    , "email" : "dklee@ropas.snu.ac.kr"
+    , "lab" : "ropas"
+    }
+  , { "id" : "jykim"
+    , "name" : "Jinyung Kim"
+    , "email" : "jykim@ropas.snu.ac.kr"
+    , "lab" : "ropas"
+    }
+  , { "id" : "khheo"
+    , "name" : "Kihong Heo"
+    , "email" : "khheo@ropas.snu.ac.kr"
+    , "lab" : "ropas"
+    }
+  , { "id" : "wslee"
+    , "name" : "Woosuk Lee"
+    , "email" : "wslee@ropas.snu.ac.kr"
+    , "lab" : "ropas"
+    }
+  , { "id" : "yskim"
+    , "name" : "Yoonseung Kim"
+    , "email" : "yoonseung.kim@sf.snu.ac.kr"
+    , "lab" : "sf"
+    }
+  , { "id" : "yjsong"
+    , "name" : "Youngju Song"
+    , "email" : "youngju.song@sf.snu.ac.kr"
+    , "lab" : "sf"
+    }
+  , { "id" : "shpark"
+    , "name" : "Sanghoon Park"
+    , "email" : "sanghoon.park@sf.snu.ac.kr"
+    , "lab" : "sf"
+    }
+  , { "id" : "jhkang"
+    , "name" : "Jeehoon Kang"
+    , "email" : "jeehoon.kang@sf.snu.ac.kr"
+    , "lab" : "sf"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{ "default" :
+  { "when" : {"day" : "Friday", "hour" : 9, "min" : 0}
+  , "where" : "Bldg 302, Rm 309"
+  , "who" : {"all" : 0, "ropas" : 2, "sf" : 1}
+  }
+, "exception" :
+  [ { "mode" : "add"
+    , "when" : {"year" : 2015, "month" : 7, "day" : 23, "hour" : 9, "min" : 0}
+    , "where" : "Bldg 302, Rm 310"
+    , "who" : {"ropas" : 2, "sf" : 1}
+    }
+  , { "mode" : "remove"
+    , "when" : {"year" : 2015, "month" : 7, "day" : 24, "hour" : 9, "min" : 0}
+    }
+  , { "mode" : "modify"
+    , "from" : {"year" : 2015, "month" : 7, "day" : 31, "hour" : 9, "min" : 0}
+    , "when" : {"year" : 2015, "month" : 8, "day" : 5, "hour" : 15, "min" : 0}
+    , "where" : "Bldg 302, Rm 310"
+    , "who" : {"ropas" : 1, "sf" : 1}
+    }
+  ]
+}
