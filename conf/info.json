@@ -19,4 +19,8 @@
     , "who" : {"ropas" : 1, "sf" : 1}
     }
   ]
+, "email" :
+  { "from" : "seminarbot@ropas.snu.ac.kr"
+  , "to" : ["skcho@ropas.snu.ac.kr", "jgkim@ropas.snu.ac.kr"]
+  }
 }
