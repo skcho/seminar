@@ -52,6 +52,18 @@ function gen_snt_msg($is_fst, $snt){
     array_push($msg, gen_talk_msg($is_fst, $when, $snt["where"], $who));
     $when = strtotime('+1 hour', $when);
   }
+
+  $hr = "======================================================================\n\n";
+  $msg = implode($hr, $msg);
+
+  if(!$is_fst){
+    $msg .= $hr;
+    $msg .= "Please leave comments by "
+          . date('l', strtotime('-1 day', $start_when))
+          . " 18:00.\n";
+    $msg .= "http://ropas.snu.ac.kr/snt_comment/comment.html";
+  }
+
   return $msg;
 }
 
@@ -60,12 +72,13 @@ function manual(){
 }
 
 function auto($is_fst){
-  $hr = "======================================================================\n\n";
+  $mail = get_email_conf();
+
   if($is_fst) $snts = snts_n_days_later(6);
   else $snts = snts_n_days_later(2);
+
   foreach($snts as $snt){
-    $msg = implode($hr, gen_snt_msg($is_fst, $snt));
-    $mail = get_email_conf();
+    $msg = gen_snt_msg($is_fst, $snt);
     send_mail('plain', $mail["from"], $mail["to"], 'Show & Tell Notice', $msg);
   }
 }
