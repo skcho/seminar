@@ -7,4 +7,5 @@
 * 6일 전 0시, 첫 번째 알림 메일 발송 `notice.php`
 * 2일 전 9시, 두 번째 알림 메일 발송 `notice.php`
 * 1일 전 18시, ropas 아카이브에 등록 `gen_xml.php`
+* 1일 전 18시, 코멘트 메일 발송 `comment.php`
 * 0일 0시, 쇼앤텔 큐 업데이트 `update_queue.php`
