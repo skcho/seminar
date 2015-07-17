@@ -11,7 +11,7 @@ function next_day($d){
 }
 
 function is_day($d, $day){
-  if(date('l', strtotime($d)) == $day) return true;
+  if(date('l', strtotime($d)) === $day) return true;
   else return false;
 }
 
@@ -52,7 +52,7 @@ function add_talk($talks, $exc){
 function remove_talk($talks, $exc){
   $talks = array_filter($talks,
                         function($talk) use($exc){
-                          if($talk["when"] == $exc["when"]) return false;
+                          if($talk["when"] === $exc["when"]) return false;
                           else return true;
                         });
   return $talks;
@@ -66,11 +66,11 @@ function modify_talk($talks, $exc){
 
 function apply_exception($talks, $excs){
   foreach ($excs as $exc){
-    if($exc["mode"] == "add"){
+    if($exc["mode"] === "add"){
       $talks = add_talk($talks, $exc);
-    }else if($exc["mode"] == "remove"){
+    }else if($exc["mode"] === "remove"){
       $talks = remove_talk($talks, $exc);
-    }else if($exc["mode"] == "modify"){
+    }else if($exc["mode"] === "modify"){
       $talks = modify_talk($talks, $exc);
     }else{
       my_log(__FILE__, "Invalid mode name in exception\n");
