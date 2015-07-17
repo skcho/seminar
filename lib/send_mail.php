@@ -20,9 +20,9 @@ function send_mail($mode, $from, $to, $subj, $msg){
   $headers .= "From: " . $from . "\r\n";
   $subj = "=?UTF-8?B?".base64_encode($subj)."?=";
   if(mail(implode(",", $to), $subj, $msg, $headers)){
-    my_log(__FILE__, "Succeed send notice mail");
+    my_log(__FILE__, "Succeed send notice mail\n");
   }else{
-    my_log(__FILE__, "Fail send notice mail");
+    my_log(__FILE__, "Fail send notice mail\n");
     exit(1);
   }
 }
