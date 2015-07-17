@@ -5,6 +5,7 @@ if(!defined('__ROOT__'))
 
 require_once __ROOT__ . "/lib/log.php";
 require_once __ROOT__ . "/lib/queue.php";
+require_once __ROOT__ . "/lib/conf.php";
 
 
 function next_day($d){
@@ -16,7 +17,8 @@ function is_day($d, $day){
   else return false;
 }
 
-function get_default_snts($default, $n){
+function get_default_snts($n){
+  $default = get_default_conf();
   $snts = array();
   $d = date('Y-m-d');
   while($n > 0){
@@ -65,8 +67,8 @@ function modify_snt($snts, $exc){
   return $snts;
 }
 
-function apply_exception($snts, $excs){
-  foreach($excs as $exc){
+function apply_exception($snts){
+  foreach(get_exception_conf() as $exc){
     if($exc["mode"] === "add"){
       $snts = add_snt($snts, $exc);
     }else if($exc["mode"] === "remove"){
@@ -123,9 +125,8 @@ function set_speakers($snts){
 
 /* Return following 10 S&Ts from tomorrow */
 function get_schedule(){
-  $conf = json_decode(file_get_contents(__ROOT__ . "/conf/info.json"), true);
-  $snts = get_default_snts($conf["default"], 30);
-  $snts = apply_exception($snts, $conf["exception"]);
+  $snts = get_default_snts(30);
+  $snts = apply_exception($snts);
   $snts = array_filter($snts, "is_after_today");
   $snts = array_slice($snts, 0, 10);
   $snts = set_speakers($snts);
