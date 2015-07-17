@@ -4,6 +4,7 @@ if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
 require_once __ROOT__ . "/lib/log.php";
+require_once __ROOT__ . "/lib/queue.php";
 
 
 function next_day($d){
@@ -65,7 +66,7 @@ function modify_talk($talks, $exc){
 }
 
 function apply_exception($talks, $excs){
-  foreach ($excs as $exc){
+  foreach($excs as $exc){
     if($exc["mode"] === "add"){
       $talks = add_talk($talks, $exc);
     }else if($exc["mode"] === "remove"){
@@ -89,15 +90,45 @@ function is_after_today($talk){
   else return false;
 }
 
-/* Return 10 following talks after today */
+function set_speaker($talk, &$queue_all, &$queue_ropas, &$queue_sf){
+  $speaker = array();
+  foreach($talk["who"] as $grp => $num){
+    if($grp === "all"){
+      $speaker = array_merge($speaker, pop_and_push($queue_all, $num));
+    }else if($grp === "ropas"){
+      $speaker = array_merge($speaker, pop_and_push($queue_ropas, $num));
+    }else if($grp === "sf"){
+      $speaker = array_merge($speaker, pop_and_push($queue_sf, $num));
+    }else{
+      my_log(__FILE__, "Invalid group name\n");
+      exit(1);
+    }
+  }
+
+  $talk["who"] = $speaker;
+  return $talk;
+}
+
+function set_speakers($talks){
+  $queue_all = read_queue(__ROOT__ . "/conf/queue.all");
+  $queue_ropas = read_queue(__ROOT__ . "/conf/queue.ropas");
+  $queue_sf = read_queue(__ROOT__ . "/conf/queue.sf");
+
+  $iter = function($talk) use(&$queue_all, &$queue_ropas, &$queue_sf){
+    return set_speaker($talk, $queue_all, $queue_ropas, $queue_sf);
+  };
+  $talks = array_map($iter, $talks);
+  return $talks;
+}
+
+/* Return following 10 talks after today */
 function get_schedule(){
   $conf = json_decode(file_get_contents(__ROOT__ . "/conf/info.json"), true);
   $talks = get_datault_talks($conf["default"], 30);
   $talks = apply_exception($talks, $conf["exception"]);
   $talks = array_filter($talks, "is_after_today");
   $talks = array_slice($talks, 0, 10);
-  /* TODO: replace "who" part */
-
+  $talks = set_speakers($talks);
   return $talks;
 }
 
