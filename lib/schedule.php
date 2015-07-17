@@ -132,4 +132,21 @@ function get_schedule(){
   return $snts;
 }
 
+/* Return the S&T on n days later
+
+   CAUTION: The return type is array of S&T, not an S&T, because there
+   may be more than one S&T in a day, by any chance.  */
+function snts_n_days_later($n){
+  $is_n_days_later = function($snt) use($n){
+    $n_days_later = date('Y-m-d', strtotime("+$n day"));
+    $snt_day = date('Y-m-d',
+                    strtotime( $snt["when"]["year"] . "-"
+                             . $snt["when"]["month"] . "-"
+                             . $snt["when"]["day"] ));
+    if($n_days_later === $snt_day) return true;
+    else return false;
+  };
+  return array_filter(get_schedule(), $is_n_days_later);
+}
+
 ?>
