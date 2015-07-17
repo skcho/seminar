@@ -11,11 +11,10 @@ if(!defined('__ROOT__'))
 
    e.g.) my_log(__FILE__, "Cannot open file\n");
  */
-function my_log($php_file, $message){
+function my_log($php_file, $msg){
   $log_file = date('ymd_His_') . basename($php_file, ".php");
-  $f = fopen(__ROOT__ . "/log/$log_file", "w") or die("Unable to open log file!");
-  fwrite($f, $message);
-  fclose($f);
+  file_put_contents(__ROOT__ . "/log/$log_file", $msg)
+    or die("Unable to open log file!");
 }
 
 ?>

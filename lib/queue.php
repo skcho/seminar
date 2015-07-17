@@ -1,7 +1,7 @@
 <?php
 
-function read_queue($file){
-  $ids = explode("\n", file_get_contents($file));
+function read_queue($filename){
+  $ids = explode("\n", file_get_contents($filename));
   $ids = array_filter($ids,
                       function($id){
                         if($id === "") return false;
