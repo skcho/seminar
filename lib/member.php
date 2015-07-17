@@ -3,6 +3,8 @@
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
+require_once __ROOT__ . "/lib/log.php";
+
 function get_member($id){
   $members_json = json_decode(file_get_contents(__ROOT__ . "/conf/member.json"),
                               true);

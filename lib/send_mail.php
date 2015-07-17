@@ -1,5 +1,11 @@
 <?php
 
+if(!defined('__ROOT__'))
+  define('__ROOT__', realpath(dirname(dirname(__FILE__))));
+
+require_once __ROOT__ . "/lib/log.php";
+
+
 /* Send mail
 
  - $mode: 'plain' or 'html'
