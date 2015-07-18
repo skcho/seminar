@@ -79,6 +79,11 @@ function select_is_fst(){
   return $is_fst;
 }
 
+function send_notice($is_fst, $snt, $msg){
+  $mail = get_email_conf();
+  send_mail('plain', $mail["from"], $mail["to"], SUBJ, $msg);
+}
+
 function confirm_notice($is_fst, $snt){
   $msg = gen_snt_msg($is_fst, $snt);
   echo "[MESSAGE START]\n";
@@ -87,8 +92,7 @@ function confirm_notice($is_fst, $snt){
   $confirm = ask_y_or_n("Are you sure to send the above message?");
   if($confirm){
     echo "Notice mail will be sent.\n\n";
-    $mail = get_email_conf();
-    send_mail('plain', $mail["from"], $mail["to"], SUBJ, $msg);
+    send_notice($is_fst, $snt, $msg);
   }else{
     echo "S&T notice is cancelled.\n\n";
   }
@@ -103,14 +107,12 @@ function manual(){
 }
 
 function auto($is_fst){
-  $mail = get_email_conf();
-
   if($is_fst) $snts = snts_n_days_later(6);
   else $snts = snts_n_days_later(2);
 
   foreach($snts as $snt){
     $msg = gen_snt_msg($is_fst, $snt);
-    send_mail('plain', $mail["from"], $mail["to"], SUBJ, $msg);
+    send_notice($is_fst, $snt, $msg);
   }
 }
 
