@@ -66,7 +66,7 @@ function gen_snt_msg($is_fst, $snt){
     $msg .= "Please leave comments by "
           . date('Y-m-d', strtotime('-1 day', $start_t))
           . " at 18:00.\n";
-    $msg .= "http://ropas.snu.ac.kr/snt_comment/comment.html";
+    $msg .= "http://ropas.snu.ac.kr/talk/register/reg_comment" . "\n";
   }
 
   return $msg;
@@ -87,7 +87,7 @@ function send_notice($is_fst, $snt, $msg){
 function confirm_notice($is_fst, $snt){
   $msg = gen_snt_msg($is_fst, $snt);
   echo "[MESSAGE START]\n";
-  echo $msg . "\n";
+  echo $msg;
   echo "[MESSAGE END]\n\n";
   $confirm = ask_y_or_n("Are you sure to send the above message?");
   if($confirm){

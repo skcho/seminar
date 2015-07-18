@@ -23,7 +23,7 @@ require_once __ROOT__ . "/lib/conf.php";
 require_once __ROOT__ . "/lib/etc.php";
 
 
-define('SUBJ', 'Show & Tell Remind');
+define('SUBJ', 'Show & Tell Order Remind');
 
 function gen_msg($snt){
   $names = array_map( function($id){return get_member_name($id);}
@@ -66,7 +66,7 @@ function auto(){
 function confirm_remind($snt){
   $msg = gen_msg($snt);
   echo "[MESSAGE START]\n";
-  echo $msg . "\n";
+  echo $msg;
   echo "[MESSAGE END]\n\n";
   $confirm = ask_y_or_n("Are you sure to send the above message?");
   if($confirm){
