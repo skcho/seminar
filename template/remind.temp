@@ -1,0 +1,12 @@
+Dear {{names}},
+
+You are supposed to give a talk on {{talk_time}}.
+
+Please upload,
+- title and abstract by {{abs_time}}
+- short memo (.pdf) by {{memo_time}}
+
+http://ropas.snu.ac.kr/talk/register/index.html
+
+Sincerely,
+Seminar Bot

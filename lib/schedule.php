@@ -143,4 +143,30 @@ function snts_n_days_later($n){
   return array_filter(get_schedule(), $is_n_days_later);
 }
 
+/* Ask to select a S&T in command line */
+function select_snt(){
+  $snts = get_schedule();
+  foreach($snts as $key => $snt){
+    echo ("$key) " . date('Y-m-d H:i', time_of_when($snt["when"])) . "\n");
+  }
+  echo "\n";
+  echo "Select a S&T (x to exit): ";
+  $input_str = my_fgets();
+  echo "\n";
+
+  if($input_str === "x"){
+    echo "Exit\n";
+    exit(0);
+  }else if(my_key_exists($input_str, $snts)){
+    $snt = $snts[(int)$input_str];
+    echo ( "The S&T on "
+         . date('Y-m-d H:i', time_of_when($snt["when"]))
+         . " is selected.\n\n" );
+    return $snt;
+  }else{
+    echo "Your input is invalid.\n";
+    exit(1);
+  }
+}
+
 ?>

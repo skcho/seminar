@@ -16,4 +16,18 @@ function time_of_when($when){
                 $when["month"], $when["day"], $when["year"]);
 }
 
+/* Ask yes or no */
+function ask_y_or_n($question){
+  echo "$question (y or n): ";
+  $input_str = my_fgets();
+  echo "\n";
+
+  if($input_str === "y") return true;
+  else if($input_str === "n") return false;
+  else{
+    echo "Your input is invalid.\n";
+    exit(1);
+  }
+}
+
 ?>

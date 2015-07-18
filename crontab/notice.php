@@ -24,7 +24,7 @@ require_once __ROOT__ . "/lib/etc.php";
 require_once __ROOT__ . "/lib/conf.php";
 
 
-define('MAIL_SUBJ', 'Show & Tell Notice');
+define('SUBJ', 'Show & Tell Notice');
 
 function gen_talk_msg($is_fst, $t, $where, $who){
   $date = date('ymd', $t);
@@ -72,46 +72,11 @@ function gen_snt_msg($is_fst, $snt){
   return $msg;
 }
 
-function select_snt(){
-  $snts = get_schedule();
-  foreach($snts as $key => $snt){
-    echo ("$key) " . date('Y-m-d H:i', time_of_when($snt["when"])) . "\n");
-  }
-  echo "\n";
-  echo "Select S&T to notice (x to exit): ";
-  $input_str = my_fgets();
-  echo "\n";
-
-  if($input_str === "x"){
-    echo "Exit\n";
-    exit(0);
-  }else if(my_key_exists($input_str, $snts)){
-    $snt = $snts[(int)$input_str];
-    echo ( "The S&T on "
-         . date('Y-m-d H:i', time_of_when($snt["when"]))
-         . " is selected.\n\n" );
-    return $snt;
-  }else{
-    echo "Your input is invalid.\n";
-    exit(1);
-  }
-}
-
 function select_is_fst(){
-  echo "Is this the first notice mail? (y or n): ";
-  $input_str = my_fgets();
-  echo "\n";
-
-  if($input_str === "y"){
-    echo "The first notice mail is selected.\n\n";
-    return true;
-  }else if($input_str === "n"){
-    echo "The second notice mail is selected.\n\n";
-    return false;
-  }else{
-    echo "Your input is invalid.\n";
-    exit(1);
-  }
+  $is_fst = ask_y_or_n("Is this the first notice mail?");
+  if($is_fst) echo "The first notice mail is selected.\n\n";
+  else echo "The second notice mail is selected.\n\n";
+  return $is_fst;
 }
 
 function confirm_notice($is_fst, $snt){
@@ -119,19 +84,13 @@ function confirm_notice($is_fst, $snt){
   echo "[MESSAGE START]\n";
   echo $msg . "\n";
   echo "[MESSAGE END]\n\n";
-  echo "Are you sure to send the above message? (y or n): ";
-  $input_str = my_fgets();
-  echo "\n";
-
-  if($input_str === "y"){
+  $confirm = ask_y_or_n("Are you sure to send the above message?");
+  if($confirm){
     echo "Notice mail will be sent.\n\n";
     $mail = get_email_conf();
-    send_mail('plain', $mail["from"], $mail["to"], MAIL_SUBJ, $msg);
-  }else if($input_str === "n"){
-    echo "S&T notice is cancelled.\n\n";
+    send_mail('plain', $mail["from"], $mail["to"], SUBJ, $msg);
   }else{
-    echo "Your input is invalid.\n";
-    exit(1);
+    echo "S&T notice is cancelled.\n\n";
   }
 }
 
@@ -151,7 +110,7 @@ function auto($is_fst){
 
   foreach($snts as $snt){
     $msg = gen_snt_msg($is_fst, $snt);
-    send_mail('plain', $mail["from"], $mail["to"], MAIL_SUBJ, $msg);
+    send_mail('plain', $mail["from"], $mail["to"], SUBJ, $msg);
   }
 }
 
