@@ -5,10 +5,14 @@ if(!defined('__ROOT__'))
 
 require_once __ROOT__ . "/lib/log.php";
 
-function get_member($id){
+function get_all_members(){
   $members_json = json_decode(file_get_contents(__ROOT__ . "/conf/member.json"),
                               true);
-  $members = $members_json["members"];
+  return $members_json["members"];
+}
+
+function get_member($id){
+  $members = get_all_members();
   $members = array_filter($members,
                           function($member) use($id){
                             if($id === $member["id"]) return true;
