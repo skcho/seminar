@@ -20,30 +20,17 @@ require_once __ROOT__ . "/lib/log.php";
 require_once __ROOT__ . "/lib/replace.php";
 require_once __ROOT__ . "/lib/member.php";
 require_once __ROOT__ . "/lib/send_mail.php";
+require_once __ROOT__ . "/lib/etc.php";
 
 
-function my_key_exists($input_str, $arr){
-  $keys = array_map(function($key){return (string)$key;}, array_keys($arr));
-  foreach($keys as $key){ if($input_str === $key) return true; }
-  return false;
-}
-
-function my_fgets(){ return str_replace("\n", "", fgets(STDIN)); }
-
-function time_of_when($when){
-  return strtotime( $when["year"] . "-"
-                  . $when["month"] . "-"
-                  . $when["day"] . "T"
-                  . $when["hour"] . ":"
-                  . $when["min"] . ":" . "0" );
-}
+$mail_subj = 'Show & Tell Notice'
 
 function gen_talk_msg($is_fst, $t, $where, $who){
   $date = date('ymd', $t);
   $contents_json = file_get_contents(__ROOT__ . "/data/{$date}_$who.json");
   if($contents_json === false){
     my_log(__FILE__,
-           __ROOT__ . "/data/{$date}_$who.json" . " does not exist.\n");
+           __ROOT__ . "/data/{$date}_$who.json" . " is not found\n");
     exit(1);
   }
   $talk = json_decode($contents_json, true);
@@ -62,22 +49,22 @@ function gen_talk_msg($is_fst, $t, $where, $who){
 }
 
 function gen_snt_msg($is_fst, $snt){
-  $msg = array();
+  $msg_arr = array();
   $start_t = time_of_when($snt["when"]);
   $t = $start_t;
   foreach($snt["who"] as $who){
-    array_push($msg, gen_talk_msg($is_fst, $t, $snt["where"], $who));
+    array_push($msg_arr, gen_talk_msg($is_fst, $t, $snt["where"], $who));
     $t = strtotime('+1 hour', $t);
   }
 
   $hr = "======================================================================\n\n";
-  $msg = implode($hr, $msg);
+  $msg = implode($hr, $msg_arr);
 
   if(!$is_fst){
     $msg .= $hr;
     $msg .= "Please leave comments by "
-          . date('l', strtotime('-1 day', $start_t))
-          . " 18:00.\n";
+          . date('Y-m-d', strtotime('-1 day', $start_t))
+          . " at 18:00.\n";
     $msg .= "http://ropas.snu.ac.kr/snt_comment/comment.html";
   }
 
@@ -95,15 +82,16 @@ function select_snt(){
   echo "\n";
 
   if($input_str === "x"){
-    echo "You entered exit.\n";
+    echo "Exit\n";
     exit(0);
   }else if(my_key_exists($input_str, $snts)){
     $snt = $snts[(int)$input_str];
-    echo ( "You selected S&T on "
-         . date('Y-m-d H:i', time_of_when($snt["when"])) . ".\n\n" );
+    echo ( "The S&T on "
+         . date('Y-m-d H:i', time_of_when($snt["when"]))
+         . " is selected.\n\n" );
     return $snt;
   }else{
-    echo "You entered invalid option.\n";
+    echo "Your input is invalid.\n";
     exit(1);
   }
 }
@@ -114,13 +102,13 @@ function select_is_fst(){
   echo "\n";
 
   if($input_str === "y"){
-    echo "You entered yes.\n\n";
+    echo "The first notice mail is selected.\n\n";
     return true;
   }else if($input_str === "n"){
-    echo "You entered no.\n\n";
+    echo "The second notice mail is selected.\n\n";
     return false;
   }else{
-    echo "You entered invalid option.\n";
+    echo "Your input is invalid.\n";
     exit(1);
   }
 }
@@ -135,13 +123,13 @@ function confirm_notice($is_fst, $snt){
   echo "\n";
 
   if($input_str === "y"){
-    echo "You entered yes.  Notice mail will be sent.\n\n";
+    echo "Notice mail will be sent.\n\n";
     $mail = get_email_conf();
-    send_mail('plain', $mail["from"], $mail["to"], 'Show & Tell Notice', $msg);
+    send_mail('plain', $mail["from"], $mail["to"], $mail_subj, $msg);
   }else if($input_str === "n"){
-    echo "You entered no.\n\n";
+    echo "S&T notice is cancelled.\n\n";
   }else{
-    echo "You entered invalid option.\n";
+    echo "Your input is invalid.\n";
     exit(1);
   }
 }
@@ -162,7 +150,7 @@ function auto($is_fst){
 
   foreach($snts as $snt){
     $msg = gen_snt_msg($is_fst, $snt);
-    send_mail('plain', $mail["from"], $mail["to"], 'Show & Tell Notice', $msg);
+    send_mail('plain', $mail["from"], $mail["to"], $mail_subj, $msg);
   }
 }
 
