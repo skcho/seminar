@@ -12,11 +12,8 @@ function my_fgets(){ return str_replace("\n", "", fgets(STDIN)); }
 
 /* Convert an array of time to a time of php */
 function time_of_when($when){
-  return strtotime( $when["year"] . "-"
-                  . $when["month"] . "-"
-                  . $when["day"] . "T"
-                  . $when["hour"] . ":"
-                  . $when["min"] . ":" . "0" );
+  return mktime($when["hour"], $when["min"], 0,
+                $when["month"], $when["day"], $when["year"]);
 }
 
 ?>

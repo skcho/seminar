@@ -21,9 +21,10 @@ require_once __ROOT__ . "/lib/replace.php";
 require_once __ROOT__ . "/lib/member.php";
 require_once __ROOT__ . "/lib/send_mail.php";
 require_once __ROOT__ . "/lib/etc.php";
+require_once __ROOT__ . "/lib/conf.php";
 
 
-$mail_subj = 'Show & Tell Notice'
+define('MAIL_SUBJ', 'Show & Tell Notice');
 
 function gen_talk_msg($is_fst, $t, $where, $who){
   $date = date('ymd', $t);
@@ -125,7 +126,7 @@ function confirm_notice($is_fst, $snt){
   if($input_str === "y"){
     echo "Notice mail will be sent.\n\n";
     $mail = get_email_conf();
-    send_mail('plain', $mail["from"], $mail["to"], $mail_subj, $msg);
+    send_mail('plain', $mail["from"], $mail["to"], MAIL_SUBJ, $msg);
   }else if($input_str === "n"){
     echo "S&T notice is cancelled.\n\n";
   }else{
@@ -150,7 +151,7 @@ function auto($is_fst){
 
   foreach($snts as $snt){
     $msg = gen_snt_msg($is_fst, $snt);
-    send_mail('plain', $mail["from"], $mail["to"], $mail_subj, $msg);
+    send_mail('plain', $mail["from"], $mail["to"], MAIL_SUBJ, $msg);
   }
 }
 

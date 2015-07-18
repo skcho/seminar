@@ -6,29 +6,20 @@ if(!defined('__ROOT__'))
 require_once __ROOT__ . "/lib/log.php";
 require_once __ROOT__ . "/lib/queue.php";
 require_once __ROOT__ . "/lib/conf.php";
+require_once __ROOT__ . "/lib/etc.php";
 
-
-function next_day($d){
-  return date('Y-m-d', strtotime('+1 day', strtotime($d)));
-}
-
-function is_day($d, $day){
-  if(date('l', strtotime($d)) === $day) return true;
-  else return false;
-}
 
 function get_default_snts($n){
   $default = get_default_conf();
   $snts = array();
-  $d = date('Y-m-d');
+  $d = time();
   while($n > 0){
-    $d = next_day($d);
-    if(is_day($d, $default["when"]["day"])){
+    if(date('l', $d) === $default["when"]["day"]){
       $snt = array(
         "when" => array(
-          "year" => (int)date('Y', strtotime($d)),
-          "month" => (int)date('m', strtotime($d)),
-          "day" => (int)date('d', strtotime($d)),
+          "year" => (int)date('Y', $d),
+          "month" => (int)date('m', $d),
+          "day" => (int)date('d', $d),
           "hour" => $default["when"]["hour"],
           "min" => $default["when"]["min"],
         ),
@@ -38,6 +29,7 @@ function get_default_snts($n){
       array_push($snts, $snt);
       $n = $n - 1;
     }
+    $d = strtotime('+1 day', $d);
   }
   return $snts;
 }
@@ -84,10 +76,9 @@ function apply_exception($snts){
   return $snts;
 }
 
-function is_after_today($snt){
-  $tomorrow = strtotime('+1 day');
-  $snt_day = strtotime( $snt["when"]["year"] . "-" . $snt["when"]["month"]
-                       . "-" . $snt["when"]["day"] );
+function is_after_today($when){
+  $tomorrow = mktime(0, 0, 0, date('m'), date('d') + 1, date('Y'));
+  $snt_day = time_of_when($when);
   if($snt_day >= $tomorrow) return true;
   else return false;
 }
@@ -127,7 +118,10 @@ function set_speakers($snts){
 function get_schedule(){
   $snts = get_default_snts(30);
   $snts = apply_exception($snts);
-  $snts = array_filter($snts, "is_after_today");
+  $snts = array_filter($snts,
+                       function($snt){
+                         return is_after_today($snt["when"]);
+                       });
   $snts = array_slice($snts, 0, 10);
   $snts = set_speakers($snts);
   return $snts;
@@ -139,12 +133,11 @@ function get_schedule(){
    may be more than one S&T in a day, by any chance.  */
 function snts_n_days_later($n){
   $is_n_days_later = function($snt) use($n){
-    $n_days_later = date('Y-m-d', strtotime("+$n day"));
-    $snt_day = date('Y-m-d',
-                    strtotime( $snt["when"]["year"] . "-"
-                             . $snt["when"]["month"] . "-"
-                             . $snt["when"]["day"] ));
-    if($n_days_later === $snt_day) return true;
+    $n_days_later = strtotime("+$n day");
+    if( (int)date('Y', $n_days_later) === $snt["when"]["year"]
+      && (int)date('m', $n_days_later) === $snt["when"]["month"]
+      && (int)date('d', $n_days_later) === $snt["when"]["day"])
+        return true;
     else return false;
   };
   return array_filter(get_schedule(), $is_n_days_later);
