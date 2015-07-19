@@ -3,8 +3,12 @@
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
+require_once __ROOT__ . "/lib/file.php";
+require_once __ROOT__ . "/lib/log.php";
+
+
 function get_conf(){
-  $conf = json_decode(file_get_contents(__ROOT__ . "/conf/info.json"), true);
+  $conf = json_get_contents(__ROOT__ . "/conf/info.json");
   return $conf;
 }
 
@@ -24,8 +28,7 @@ function get_email_conf(){
 }
 
 function get_all_members(){
-  $members_json = json_decode(file_get_contents(__ROOT__ . "/conf/member.json"),
-                              true);
+  $members_json = json_get_contents(__ROOT__ . "/conf/member.json");
   return $members_json["members"];
 }
 
@@ -65,12 +68,7 @@ function gen_talk_data_filename($t, $id){
 
 function get_talk_data($t, $id){
   $filename = gen_talk_data_filename($t, $id);
-  $contents_json = file_get_contents($filename);
-  if($contents_json === false){
-    my_log(__FILE__, "$filename is not found\n");
-    exit(1);
-  }
-  return json_decode($contents_json, true);
+  return json_get_contents($filename);
 }
 
 function get_talk_data_or_gen($t, $id){
@@ -90,11 +88,7 @@ function get_talk_data_or_gen($t, $id){
 
 function put_talk_data($t, $id, $talk_data){
   $filename = gen_talk_data_filename($t, $id);
-  if(file_put_contents($filename, json_encode($talk_data)) === false){
-    my_log(__FILE__, "$filename cannot be written.\n");
-    exit(1);
-  }
-  my_log(__FILE__, "$filename updated.\n");
+  json_put_contents($filename, $talk_data);
 }
 
 ?>

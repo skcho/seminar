@@ -1,12 +1,13 @@
 <?php
 
+if(!defined('__ROOT__'))
+  define('__ROOT__', realpath(dirname(dirname(__FILE__))));
+
+require_once __ROOT__ . "/lib/file.php";
+
+
 function read_queue($filename){
-  $str = file_get_contents($filename);
-  if($str === false){
-    my_log(__FILE__, "$filename cannot be read\n");
-    exit(1);
-  }
-  $ids = explode("\n", $str);
+  $ids = explode("\n", my_file_get_contents($filename));
   $ids = array_filter($ids,
                       function($id){
                         if($id === "") return false;
@@ -16,11 +17,7 @@ function read_queue($filename){
 }
 
 function write_queue($filename, $queue){
-  if(file_put_contents($filename, implode("\n", $queue)) === false){
-    my_log(__FILE__, "$filename cannot be written\n");
-    exit(1);
-  }
-  my_log(__FILE__, "$filename updated\n");
+  my_file_put_contents($filename, implode("\n", $queue));
 }
 
 function pop_and_push(&$queue, $num){

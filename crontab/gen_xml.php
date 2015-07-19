@@ -3,6 +3,7 @@
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
+require_once __ROOT__ . "/lib/file.php";
 require_once __ROOT__ . "/lib/interactive.php";
 require_once __ROOT__ . "/lib/log.php";
 require_once __ROOT__ . "/lib/read_data.php";
@@ -35,11 +36,7 @@ function run_talk($snt, $n, $t, $id){
 
   $filename = __ROOT__ . "/talk_root/" . date('Y', $t) . "/" . date('md', $t)
             . "_" . $n . ".xml";
-  if(file_put_contents($filename, $msg) === false){
-    my_log(__FILE__, "$filename cannot be written.\n");
-    exit(1);
-  }
-  my_log(__FILE__, "$filename updated\n");
+  my_file_put_contents($filename, $msg);
 }
 
 function run_snt($snt){
