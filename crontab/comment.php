@@ -3,11 +3,9 @@
 /* Send comment mail
 
    1. If it runs automatically,
-
    > php comment.php auto
 
    2. If it runs manually,
-
    > php comment.php
  */
 
@@ -72,9 +70,7 @@ function auto(){
 
 function confirm_notice($snt){
   $msg = gen_msg($snt);
-  echo "[MESSAGE START]\n";
-  echo $msg;
-  echo "[MESSAGE END]\n\n";
+  echo_msg($msg);
   $confirm = ask_y_or_n("Are you sure to send the above message?");
   if($confirm){
     echo "Comment mail will be sent.\n\n";

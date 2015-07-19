@@ -3,11 +3,9 @@
 /* Set commenters
 
    1. If it runs automatically,
-
    > php commenter.php auto
 
    2. If it runs manually,
-
    > php commenter.php
  */
 
@@ -108,9 +106,7 @@ function auto(){
 function confirm_commenter($snt){
   $commenter_info = gen_commenter($snt["who"]);
   $msg = gen_msg($snt, $commenter_info);
-  echo "[MESSAGE START]\n";
-  echo $msg;
-  echo "[MESSAGE END]\n\n";
+  echo_msg($msg);
   $confirm = ask_y_or_n("Are you sure to send the above message?");
   if($confirm){
     echo "Commenter notice mail will be sent.\n\n";

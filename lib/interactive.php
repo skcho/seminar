@@ -30,4 +30,10 @@ function ask_y_or_n($question){
   }
 }
 
+function echo_msg($msg){
+  echo "[MESSAGE START]\n";
+  echo $msg;
+  echo "[MESSAGE END]\n\n";
+}
+
 ?>

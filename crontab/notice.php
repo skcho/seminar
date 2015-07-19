@@ -3,12 +3,10 @@
 /* Send notice mail
 
    1. If it runs automatically,
-
    > php notice.php fst
    > php notice.php snd
 
    2. If it runs manually,
-
    > php notice.php
  */
 
@@ -81,9 +79,7 @@ function send_notice($is_fst, $snt, $msg){
 
 function confirm_notice($is_fst, $snt){
   $msg = gen_snt_msg($is_fst, $snt);
-  echo "[MESSAGE START]\n";
-  echo $msg;
-  echo "[MESSAGE END]\n\n";
+  echo_msg($msg);
   $confirm = ask_y_or_n("Are you sure to send the above message?");
   if($confirm){
     echo "Notice mail will be sent.\n\n";
