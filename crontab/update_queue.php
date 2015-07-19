@@ -19,8 +19,7 @@ function run(){
   $queue_ropas = read_queue($ropas_filename);
   $queue_sf = read_queue($sf_filename);
 
-  $snts = snts_n_days_later(0);
-  foreach($snts as $snt)
+  foreach(snts_today() as $snt)
     set_speaker($snt, $queue_all, $queue_ropas, $queue_sf);
 
   write_queue($all_filename, $queue_all);

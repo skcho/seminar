@@ -113,7 +113,9 @@ function set_speakers($snts){
   return $snts;
 }
 
-function get_schedule_from($t){
+/* Return following 10 S&Ts from tomorrow */
+function get_schedule(){
+  $t = mktime(0, 0, 0, date('m'), date('d') + 1, date('Y'));
   $snts = get_default_snts(30);
   $snts = apply_exception($snts);
   $snts = array_filter($snts,
@@ -125,23 +127,17 @@ function get_schedule_from($t){
   return $snts;
 }
 
-/* Return following 10 S&Ts from today */
-function get_schedule_from_today(){
-  $today = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
-  return get_schedule_from($today);
-}
-
-/* Return following 10 S&Ts from tomorrow */
-function get_schedule_from_tomorrow(){
-  $tomorrow = mktime(0, 0, 0, date('m'), date('d') + 1, date('Y'));
-  return get_schedule_from($tomorrow);
-}
-
 /* Return the S&T on n days later
+
+   CUATION: n should be bigger than 0
 
    CAUTION: The return type is array of S&T, not an S&T, because there
    may be more than one S&T in a day, by any chance.  */
 function snts_n_days_later($n){
+  if($n <= 0){
+    my_log(__FILE__, "n should be bigger than 0\n");
+    exit(1);
+  }
   $is_n_days_later = function($snt) use($n){
     $n_days_later = strtotime("+$n day");
     if( (int)date('Y', $n_days_later) === $snt["when"]["year"]
@@ -150,12 +146,26 @@ function snts_n_days_later($n){
         return true;
     else return false;
   };
-  return array_filter(get_schedule_from_today(), $is_n_days_later);
+  return array_filter(get_schedule(), $is_n_days_later);
+}
+
+function snts_today(){
+  $is_today = function($snt){
+    if( (int)date('Y') === $snt["when"]["year"]
+      && (int)date('m') === $snt["when"]["month"]
+      && (int)date('d') === $snt["when"]["day"] )
+        return true;
+    else false;
+  };
+  $snts = get_default_snts(30);
+  $snts = apply_exception($snts);
+  $snts = array_filter($snts, $is_today);
+  return $snts;
 }
 
 /* Ask to select a S&T in command line */
 function select_snt(){
-  $snts = get_schedule_from_tomorrow();
+  $snts = get_schedule();
   foreach($snts as $key => $snt){
     echo ("$key) " . date('Y-m-d H:i', time_of_when($snt["when"])) . "\n");
   }
