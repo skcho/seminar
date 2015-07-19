@@ -76,10 +76,9 @@ function apply_exception($snts){
   return $snts;
 }
 
-function is_after_today($when){
-  $tomorrow = mktime(0, 0, 0, date('m'), date('d') + 1, date('Y'));
+function is_from($when, $t){
   $snt_day = time_of_when($when);
-  if($snt_day >= $tomorrow) return true;
+  if($snt_day >= $t) return true;
   else return false;
 }
 
@@ -114,17 +113,28 @@ function set_speakers($snts){
   return $snts;
 }
 
-/* Return following 10 S&Ts from tomorrow */
-function get_schedule(){
+function get_schedule_from($t){
   $snts = get_default_snts(30);
   $snts = apply_exception($snts);
   $snts = array_filter($snts,
-                       function($snt){
-                         return is_after_today($snt["when"]);
+                       function($snt) use($t){
+                         return is_from($snt["when"], $t);
                        });
   $snts = array_slice($snts, 0, 10);
   $snts = set_speakers($snts);
   return $snts;
+}
+
+/* Return following 10 S&Ts from today */
+function get_schedule_from_today(){
+  $today = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+  return get_schedule_from($today);
+}
+
+/* Return following 10 S&Ts from tomorrow */
+function get_schedule_from_tomorrow(){
+  $tomorrow = mktime(0, 0, 0, date('m'), date('d') + 1, date('Y'));
+  return get_schedule_from($tomorrow);
 }
 
 /* Return the S&T on n days later
@@ -140,12 +150,12 @@ function snts_n_days_later($n){
         return true;
     else return false;
   };
-  return array_filter(get_schedule(), $is_n_days_later);
+  return array_filter(get_schedule_from_today(), $is_n_days_later);
 }
 
 /* Ask to select a S&T in command line */
 function select_snt(){
-  $snts = get_schedule();
+  $snts = get_schedule_from_tomorrow();
   foreach($snts as $key => $snt){
     echo ("$key) " . date('Y-m-d H:i', time_of_when($snt["when"])) . "\n");
   }
