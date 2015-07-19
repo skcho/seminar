@@ -1,0 +1,13 @@
+<r:seminar xmlns:r="http://ropas.snu.ac.kr/2005/ropas"
+           xmlns="http://www.w3.org/1999/xhtml">
+  <r:title>{{TITLE}}</r:title>
+  {{WHO}}
+  <r:when>{{WHEN}}</r:when>
+  <r:where>{{WHERE}}</r:where>
+  <r:abstract>
+  {{ABSTRACT}}  
+  </r:abstract>
+  <!--r:resource href="{{SLIDES_FILENAME}}">slides</r:resource-->
+  <r:resource href="http://ropas.snu.ac.kr/snt_pdfs2/{{MEMO_FILENAME}}">short paper</r:resource>
+  <r:resource href="http://ropas.snu.ac.kr/snt_comment2/view?id={{ID}}&amp;date={{DATE}}">comment</r:resource>
+</r:seminar>
