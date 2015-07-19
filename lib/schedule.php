@@ -24,7 +24,7 @@ function get_default_snts($n){
           "min" => $default["when"]["min"],
         ),
         "where" => $default["where"],
-        "who" => $default["who"],
+        "who_grp" => $default["who_grp"],
       );
       array_push($snts, $snt);
       $n = $n - 1;
@@ -38,7 +38,7 @@ function add_snt($snts, $exc){
   $snt = array(
     "when" => $exc["when"],
     "where" => $exc["where"],
-    "who" => $exc["who"],
+    "who_grp" => $exc["who_grp"],
   );
   array_push($snts, $snt);
   return $snts;
@@ -84,7 +84,7 @@ function is_from($when, $t){
 
 function set_speaker($snt, &$queue_all, &$queue_ropas, &$queue_sf){
   $speaker = array();
-  foreach($snt["who"] as $grp => $num){
+  foreach($snt["who_grp"] as $grp => $num){
     if($grp === "all"){
       $speaker = array_merge($speaker, pop_and_push($queue_all, $num));
     }else if($grp === "ropas"){
