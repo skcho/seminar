@@ -15,27 +15,23 @@
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
-require_once __ROOT__ . "/lib/schedule.php";
+require_once __ROOT__ . "/lib/interactive.php";
 require_once __ROOT__ . "/lib/log.php";
-require_once __ROOT__ . "/lib/replace.php";
-require_once __ROOT__ . "/lib/send_mail.php";
-require_once __ROOT__ . "/lib/etc.php";
 require_once __ROOT__ . "/lib/read_data.php";
+require_once __ROOT__ . "/lib/replace.php";
+require_once __ROOT__ . "/lib/schedule.php";
+require_once __ROOT__ . "/lib/send_mail.php";
 
 
 define('SUBJ', 'Show & Tell Notice');
 
 function gen_talk_msg($is_fst, $t, $where, $who){
-  $date = date('ymd', $t);
-  $contents_json = file_get_contents(__ROOT__ . "/data/{$date}_$who.json");
-  if($contents_json === false){
-    my_log(__FILE__,
-           __ROOT__ . "/data/{$date}_$who.json" . " is not found\n");
-    exit(1);
-  }
-  $talk = json_decode($contents_json, true);
+  $talk = get_talk_data($t, $who);
   if($is_fst) $pdf = "";
-  else $pdf = "http://ropas.snu.ac.kr/snt_pdfs/{$date}_$who.pdf";
+  else{
+    $date = date('ymd', $t);
+    $pdf = "http://ropas.snu.ac.kr/snt_pdfs/{$date}_$who.pdf";
+  }
 
   $src = array(
     "TITLE" => $talk["title"],

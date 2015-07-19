@@ -14,12 +14,12 @@
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
-require_once __ROOT__ . "/lib/schedule.php";
+require_once __ROOT__ . "/lib/interactive.php";
 require_once __ROOT__ . "/lib/log.php";
-require_once __ROOT__ . "/lib/replace.php";
-require_once __ROOT__ . "/lib/send_mail.php";
 require_once __ROOT__ . "/lib/read_data.php";
-require_once __ROOT__ . "/lib/etc.php";
+require_once __ROOT__ . "/lib/replace.php";
+require_once __ROOT__ . "/lib/schedule.php";
+require_once __ROOT__ . "/lib/send_mail.php";
 
 
 define('SUBJ', 'Show & Tell Commenter Notice');
@@ -83,30 +83,11 @@ function send_commenter($snt, $commenter_info, $msg){
 }
 
 function set_data($snt, $commenter_info){
-  $t = date('ymd', time_of_when($snt["when"]));
+  $t = time_of_when($snt["when"]);
   foreach($commenter_info as $speaker => $commenters){
-    $filename = __ROOT__ . "/data/{$t}_$speaker.json";
-    if(file_exists($filename)){
-      $contents_json = file_get_contents($filename);
-      if($contents_json === false){
-        my_log(__FILE__, "$filename cannot be read.\n");
-        exit(1);
-      }
-      $contents = json_decode($contents_json, true);
-    }else{
-      $contents = array(
-        "title" => "",
-        "abstract" => "",
-        "commenters" => array(),
-        "comments" => array(),
-      );
-    }
+    $contents = get_talk_data_or_gen($t, $speaker);
     $contents["commenters"] = $commenters;
-    if(file_put_contents($filename, json_encode($contents)) === false){
-      my_log(__FILE__, "$filename cannot be written.\n");
-      exit(1);
-    }
-    my_log(__FILE__, "$filename updated.\n");
+    put_talk_data($t, $speaker, $contents);
   }
 }
 

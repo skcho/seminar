@@ -58,4 +58,43 @@ function get_member_lab($id){
   return $member["lab"];
 }
 
+function gen_talk_data_filename($t, $id){
+  $date = date('ymd', $t);
+  return __ROOT__ . "/data/{$date}_$id.json";
+}
+
+function get_talk_data($t, $id){
+  $filename = gen_talk_data_filename($t, $id);
+  $contents_json = file_get_contents($filename);
+  if($contents_json === false){
+    my_log(__FILE__, "$filename is not found\n");
+    exit(1);
+  }
+  return json_decode($contents_json, true);
+}
+
+function get_talk_data_or_gen($t, $id){
+  $filename = gen_talk_data_filename($t, $id);
+  if(file_exists($filename)){
+    return get_talk_data($t, $id);
+  }else{
+    $contents = array(
+      "title" => "",
+      "abstract" => "",
+      "commenters" => array(),
+      "comments" => array(),
+    );
+    return $contents;
+  }
+}
+
+function put_talk_data($t, $id, $talk_data){
+  $filename = gen_talk_data_filename($t, $id);
+  if(file_put_contents($filename, json_encode($talk_data)) === false){
+    my_log(__FILE__, "$filename cannot be written.\n");
+    exit(1);
+  }
+  my_log(__FILE__, "$filename updated.\n");
+}
+
 ?>
