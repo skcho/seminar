@@ -21,8 +21,6 @@ require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/send_mail.php";
 
 
-define('SUBJ', 'Show & Tell Notice');
-
 function gen_talk_msg($is_fst, $t, $where, $who){
   $talk = get_talk_data($t, $who);
   if($is_fst) $pdf = "";
@@ -74,7 +72,7 @@ function select_is_fst(){
 
 function send_notice($is_fst, $snt, $msg){
   $mail = get_email_conf();
-  send_mail('plain', $mail["from"], $mail["to"], SUBJ, $msg);
+  send_mail('plain', $mail["from"], $mail["to"], 'Show & Tell Notice', $msg);
 }
 
 function confirm_notice($is_fst, $snt){

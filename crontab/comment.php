@@ -20,8 +20,6 @@ require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/send_mail.php";
 
 
-define('SUBJ', '우리들의 코멘트(comments on S&T memos)');
-
 function get_coments($when, $id){
   $talk_data = get_talk_data(time_of_when($when), $id);
   return $talk_data["comments"];
@@ -56,7 +54,8 @@ function gen_msg($snt){
 
 function send($msg){
   $mail = get_email_conf();
-  send_mail('html', $mail["from"], $mail["to"], SUBJ, $msg);
+  send_mail( 'html', $mail["from"], $mail["to"]
+           , '우리들의 코멘트(comments on S&T memos)', $msg );
 }
 
 

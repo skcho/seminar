@@ -20,8 +20,6 @@ require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/send_mail.php";
 
 
-define('SUBJ', 'Show & Tell Commenter Notice');
-
 function gen_commenter($speakers){
   $all = array_map(function($m){return $m["id"];}, get_all_members());
   $listeners = array_filter($all,
@@ -77,7 +75,9 @@ function send_commenter($snt, $commenter_info, $msg){
   $all_email = array_map("get_member_email", $all);
   $mail = get_email_conf();
   /* TODO: uncomment before release */
-  // send_mail('plain', $mail["from"], $all_email, SUBJ, $msg);
+  /* send_mailf( 'plain', $mail["from"], $all_email
+               , 'Show & Tell Commenter Notice', $msg );
+   */
 }
 
 function set_data($snt, $commenter_info){

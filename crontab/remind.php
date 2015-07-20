@@ -20,8 +20,6 @@ require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/send_mail.php";
 
 
-define('SUBJ', 'Show & Tell Order Remind');
-
 function gen_msg($snt){
   $names = array_map( function($id){return get_member_name($id);}
                     , $snt["who"] );
@@ -49,7 +47,7 @@ function send_remind($snt, $msg){
   $emails = array_map( function($id){return get_member_email($id);}
                      , $snt["who"] );
   /* TODO: uncomment before release */
-  // send_mail('plain', $mail["from"], $emails, SUBJ, $msg);
+  // send_mail('plain', $mail["from"], $emails, 'Show & Tell Order Remind', $msg);
 }
 
 function auto(){
