@@ -24,14 +24,13 @@ a:hover {
     text-decoration: underline;
 }
 
-p,ul,ol,dl,code,pre {
+p,ul,ol,dl,code,pre,td {
     line-height: 160%;
 }
 
 .section {
-#background-color:yellow;
-    padding:0px 10px;             /* 상하, 좌우 */
-    margin:50px 0px;              /* 상하, 좌우 */
+    padding:0px 10px;           /* 상하, 좌우 */
+    margin:50px 0px;            /* 상하, 좌우 */
 }
 
 .fwidth {
@@ -48,7 +47,6 @@ p,ul,ol,dl,code,pre {
 }
 
 table{
-#    background-color:blue;
     width:100%;
 }
 
