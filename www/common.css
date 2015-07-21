@@ -1,0 +1,87 @@
+body {
+    font-family: sans-serif; 
+    color: #444;
+    max-width:680px;
+    margin: 0 auto;
+    padding: 0 10px;
+
+}
+
+h1 {
+    font-weight:300;
+    color:#5ea268;
+    font-size: 230%;
+    text-align: center;
+}
+
+h2 {
+    font-weight:300;
+    text-align: center;
+}
+
+a {
+    color: #0088cc;
+    text-decoration: none;
+}
+a:hover {
+    color: #005580;
+    text-decoration: underline;
+}
+
+p,ul,ol,dl,code,pre {
+    line-height: 160%;
+}
+
+code, pre {
+  font-family: Menlo, Consolas, "Courier New", monospace;
+}
+
+pre {
+  display: block;
+  background-color: #f7f7f9;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #e1e1e8;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;  
+}
+#snt-schedule {
+  border-style: solid;
+  border-width: 1px;
+}
+#mail-schedule {
+  margin-top:2px;
+  border-style: solid;
+  border-width: 1px;
+}
+#box-schedule {
+  margin-top 2px;
+  border-style: solid;
+  border-width: 1px;
+}
+.at-title {
+  text-align: left;
+}
+.abstract-table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.submit-button{
+  height: 40px;
+  width: 80px;
+}
+/* img { */
+/*     display: block; */
+/*     margin: 0 auto; */
+/* } */

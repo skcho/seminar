@@ -10,5 +10,5 @@
 <p>메모: {{MEMO}}</p>
 <p>코멘트:<br>
 <textarea name="comment" rows="4" cols="50"></textarea></p>
-<input type="submit" value="등록">
+<input type="submit" value="등록" class="submit-button">
 </form>
