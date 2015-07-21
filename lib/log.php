@@ -13,7 +13,7 @@ if(!defined('__ROOT__'))
  */
 function my_log($php_file, $msg){
   $log_file = date('ymd_His_') . basename($php_file, ".php");
-  file_put_contents(__ROOT__ . "/log/$log_file", $msg)
+  file_put_contents(__ROOT__ . "/log/$log_file", $msg, FILE_APPEND)
     or die("Unable to open log file!");
 }
 
