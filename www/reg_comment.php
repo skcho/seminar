@@ -18,6 +18,7 @@ require_once __ROOT__ . "/lib/replace.php";
 function entry(){
 
   echo "<h2>쇼앤텔 일정</h2>\n";
+  echo "<p>괄호 안의 사람들이 코멘터입니다.</p>";
 
   $snts = get_schedule();
   echo "<ul>\n";
@@ -30,7 +31,21 @@ function entry(){
     foreach($snt["who"] as $id){
       echo "<li><a href=\"reg_comment?id={$id}&amp;date={$date}\">"
          . get_member_name($id)
-         . "</a></li>\n";
+         . "</a> ";
+      $filename = gen_talk_data_filename($t, $id);
+      if(file_exists($filename)){
+        $talk_data = get_talk_data($t, $id);
+        $commenters = $talk_data["commenters"];
+        if(count($commenters) !== 0){
+          $commenters = array_map(
+            function($commenter){ return get_member_name($commenter); },
+            $commenters
+          );
+          echo "(" . implode(", ", $commenters) . ")";
+        }
+      }
+
+      echo "</li>\n";
     }
     echo "</ul>\n";
     echo "</li>\n";

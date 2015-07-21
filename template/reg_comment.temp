@@ -1,0 +1,12 @@
+<form action="reg_run.php" method="POST">
+<p>발표자: {{NAME}}</p>
+<input type="hidden" name="id" value="{{ID}}">
+<p>날짜: {{WHEN}}</p>
+<input type="hidden" name="when" value="{{WHEN}}">
+<p>제목: {{TITLE}}</p>
+<p>요약: {{ABSTRACT}}</p>
+<p>메모: {{MEMO}}</p>
+<p>코멘트:<br>
+<textarea name="comment" rows="4" cols="50"></textarea></p>
+<input type="submit" value="등록">
+</form>
