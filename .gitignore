@@ -1,2 +1,5 @@
+.htaccess
 data/*.json
+data/*.pdf
 log/*
+talk_root
