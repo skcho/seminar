@@ -24,7 +24,7 @@ function entry(){
   foreach($snts as $key => $snt){
     $t = time_of_when($snt["when"]);
     echo "<li>" . date('Y-m-d H:i', $t)
-       . " / " . $snt["where"] . "\n";
+       . " @ " . $snt["where"] . "\n";
     echo "<ul>\n";
     $date = date('Y-m-d', $t);
     foreach($snt["who"] as $id){
