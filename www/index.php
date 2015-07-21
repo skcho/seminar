@@ -6,8 +6,8 @@
 
 <ul>
   <li><a href="schedule">일정 보기</a></li>
-  <li><a href="reg_abstract">발표 정보 (제목/요약/메모) 입력</a></li>
-  <li><a href="reg_comment">코멘트 입력</a></li>
+  <li><a href="reg_abstract">발표 정보 등록 (제목/요약/메모)</a></li>
+  <li><a href="reg_comment">코멘트 등록</a></li>
 </ul>
 
 <h2>알림 메일 발송 일정</h2>

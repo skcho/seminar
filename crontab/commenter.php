@@ -85,7 +85,7 @@ function set_data($snt, $commenter_info){
   foreach($commenter_info as $speaker => $commenters){
     $contents = get_talk_data_or_gen($t, $speaker);
     $contents["commenters"] = $commenters;
-    put_talk_data($t, $speaker, $contents);
+    if(!put_talk_data($t, $speaker, $contents)) exit(1);
   }
 }
 

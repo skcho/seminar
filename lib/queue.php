@@ -17,7 +17,7 @@ function read_queue($filename){
 }
 
 function write_queue($filename, $queue){
-  my_file_put_contents($filename, implode("\n", $queue));
+  if(!my_file_put_contents($filename, implode("\n", $queue))) exit(1);
 }
 
 function pop_and_push(&$queue, $num){

@@ -36,7 +36,7 @@ function run_talk($snt, $n, $t, $id){
 
   $filename = __ROOT__ . "/talk_root/" . date('Y', $t) . "/" . date('md', $t)
             . "_" . $n . ".xml";
-  my_file_put_contents($filename, $msg);
+  if(!my_file_put_contents($filename, $msg)) exit(1);
 }
 
 function run_snt($snt){

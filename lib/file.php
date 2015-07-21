@@ -18,9 +18,11 @@ function my_file_get_contents($filename){
 function my_file_put_contents($filename, $data){
   if(file_put_contents($filename, $data) === false){
     my_log(__FILE__, "$filename cannot be written\n");
-    exit(1);
+    return false;
   }else{
+    chmod($filename, 0664);
     my_log(__FILE__, "$filename updated\n");
+    return true;
   }
 }
 
@@ -29,7 +31,7 @@ function json_get_contents($filename){
 }
 
 function json_put_contents($filename, $arr){
-  my_file_put_contents($filename, json_encode($arr));
+  return my_file_put_contents($filename, json_encode($arr));
 }
 
 ?>

@@ -61,9 +61,17 @@ function get_member_lab($id){
   return $member["lab"];
 }
 
-function gen_talk_data_filename($t, $id){
+function gen_data_filename($t, $id, $ext){
   $date = date('ymd', $t);
-  return __ROOT__ . "/data/{$date}_$id.json";
+  return __ROOT__ . "/data/{$date}_$id." . $ext;
+}
+
+function gen_talk_data_filename($t, $id){
+  return gen_data_filename($t, $id, "json");
+}
+
+function gen_memo_filename($t, $id){
+  return gen_data_filename($t, $id, "pdf");
 }
 
 function get_talk_data($t, $id){
@@ -88,7 +96,7 @@ function get_talk_data_or_gen($t, $id){
 
 function put_talk_data($t, $id, $talk_data){
   $filename = gen_talk_data_filename($t, $id);
-  json_put_contents($filename, $talk_data);
+  return json_put_contents($filename, $talk_data);
 }
 
 ?>

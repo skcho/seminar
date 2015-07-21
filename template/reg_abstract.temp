@@ -1,0 +1,12 @@
+<form enctype="multipart/form-data" action="reg_run.php" method="POST">
+<p>발표자: {{NAME}}</p>
+<input type="hidden" name="id" value="{{ID}}">
+<p>날짜: {{WHEN}}</p>
+<input type="hidden" name="when" value="{{WHEN}}">
+<p>제목: <input type="text" name="title" value="{{TITLE}}"></p>
+<p>요약:<br> <textarea name="abstract" rows="4" cols="50">{{ABSTRACT}}</textarea></p>
+<p>메모: {{MEMO}}<br>
+  <input name="memo" type="file"/>
+</p>
+<input type="submit" value="등록">
+</form>
