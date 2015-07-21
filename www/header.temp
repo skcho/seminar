@@ -7,4 +7,6 @@
   <link rel="stylesheet" href="common.css">
 </head>
 
+<h1><?php echo $title;?> <sub><a href=".">&larr;</a></sub></h1>
+
 <body>

@@ -1,7 +1,5 @@
 <?php $title = "쇼앤텔 관리 시스템"; require 'header.temp'; ?>
 
-<h1>쇼앤텔 관리 시스템</h1>
-
 <h2>일정 보기 및 등록</h2>
 
 <ul>

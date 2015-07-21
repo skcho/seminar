@@ -10,8 +10,6 @@ require_once __ROOT__ . "/lib/read_data.php";
 
 ?>
 
-<h1>쇼앤텔 일정 보기</h1>
-
 <h2>변경 사항</h2>
 
 <?php

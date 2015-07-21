@@ -11,8 +11,6 @@ require_once __ROOT__ . "/lib/replace.php";
 
 ?>
 
-<h1>코멘트 등록</h1>
-
 <?php
 
 function entry(){

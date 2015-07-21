@@ -11,8 +11,6 @@ require_once __ROOT__ . "/lib/replace.php";
 
 ?>
 
-<h1>발표 정보 등록</h1>
-
 <?php
 
 function entry(){
