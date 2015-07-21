@@ -1,4 +1,4 @@
-<?php $title = "코멘트 보기"; require 'header.temp'; ?>
+<?php $title = "코멘트 보기"; require 'header_noback.temp'; ?>
 
 <?php
 if(!defined('__ROOT__'))
@@ -14,7 +14,8 @@ require_once __ROOT__ . "/lib/comment.php";
 
 $id = $_REQUEST["id"];
 $t = strtotime($_REQUEST["date"]);
-echo gen_msg($t, $id);
+
+if($id !== NULL) echo gen_msg($t, $id);
 ?>
 
 <?php require 'footer.temp'; ?>
