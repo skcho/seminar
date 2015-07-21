@@ -1,5 +1,5 @@
 <?php $title = "쇼앤텔 관리 시스템"; require 'header_noback.temp'; ?>
-<div id="snt-schedule">
+<div class="section">
 <h2>일정 보기 및 등록</h2>
 
 <ul>
@@ -8,7 +8,7 @@
   <li><a href="reg_comment">코멘트 등록</a></li>
 </ul>
 </div>
-<div id="mail-schedule">
+<div class="section">
 <h2>알림 메일 발송 일정</h2>
 
 <ul>

@@ -1,14 +1,50 @@
+<div class="section">
 <h2>코멘트 등록 양식</h2>
 
 <form action="reg_run.php" method="POST">
-<p>발표자: {{NAME}}</p>
+
 <input type="hidden" name="id" value="{{ID}}">
-<p>날짜: {{WHEN}}</p>
 <input type="hidden" name="when" value="{{WHEN}}">
-<p>제목: {{TITLE}}</p>
-<p>요약: {{ABSTRACT}}</p>
-<p>메모: {{MEMO}}</p>
-<p>코멘트:<br>
-<textarea name="comment" rows="4" cols="50"></textarea></p>
-<input type="submit" value="등록" class="submit-button">
+
+<table>
+<tr>
+  <td style="width:60px">발표자:</td>
+  <td>{{NAME}}</td>
+</tr>
+<tr>
+  <td>날짜:</td>
+  <td>{{WHEN}}</td>
+</tr>
+<tr>
+  <td>제목:</td>
+  <td>{{TITLE}}</td>
+</tr>
+<tr>
+  <td>요약:</td>
+  <td></td>
+</tr>
+<tr>
+  <td colspan="2">{{ABSTRACT}}</td>
+</tr>
+<tr>
+  <td>메모:</td>
+  <td>{{MEMO}}</td>
+</tr>
+<tr>
+  <td>코멘트:</td>
+  <td></td>
+</tr>
+<tr>
+  <td colspan="2">
+    <textarea name="comment" class="fwidth" rows="10"></textarea>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" class="submit-button">
+    <input type="submit" value="등록">
+  </td>
+</tr>
+</table>
+
 </form>
+</div>

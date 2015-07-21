@@ -14,7 +14,7 @@ require_once __ROOT__ . "/lib/replace.php";
 <?php
 
 function entry(){
-
+  echo "<div class=\"section\">\n";
   echo "<h2>쇼앤텔 일정</h2>\n";
 
   $snts = get_schedule();
@@ -34,17 +34,18 @@ function entry(){
     echo "</li>\n";
   }
   echo "</ul>\n";
+  echo "</div>\n";
 }
 
 function reg(){
-
   $id = $_REQUEST["id"];
   $date = $_REQUEST["date"];
   $t = strtotime($date);
   $talk_data = get_talk_data_or_gen($t, $id);
   if(file_exists(gen_memo_filename($t, $id))){
-    $link = "http://ropas.snu.ac.kr/snt_pdfs2/" . date('ymd', $t) . "_$id.pdf";
-    $memo = "<a href=\"" . $link . "\">" . $link . "</a>";
+    $memo_filename = date('ymd', $t) . "_$id.pdf";
+    $link = "http://ropas.snu.ac.kr/snt_pdfs2/" . $memo_filename;
+    $memo = "<a href=\"" . $link . "\">" . $memo_filename . "</a>";
   }else{
     $memo = "등록된 메모가 없습니다.";
   }

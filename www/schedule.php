@@ -10,10 +10,10 @@ require_once __ROOT__ . "/lib/read_data.php";
 
 ?>
 
+<div class="section">
 <h2>변경 사항</h2>
 
 <?php
-
 function str_of_when($when){ return date('Y-m-d H:i', time_of_when($when)); }
 
 echo "<ul>\n";
@@ -33,9 +33,10 @@ foreach(get_exception_conf() as $exc){
   echo "</li>\n";
 }
 echo "</ul>\n";
-
 ?>
+</div>
 
+<div class="section">
 <h2>쇼앤텔 일정</h2>
 
 <?php
@@ -53,7 +54,7 @@ foreach($snts as $key => $snt){
   echo "</li>\n";
 }
 echo "</ul>\n";
-
 ?>
+</div>
 
 <?php require 'footer.temp'; ?>

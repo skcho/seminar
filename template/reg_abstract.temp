@@ -1,22 +1,53 @@
+<div class="section">
 <h2>등록 양식</h2>
 
 <form enctype="multipart/form-data" action="reg_run.php" method="POST">
-<p>발표자: {{NAME}}</p>
+
 <input type="hidden" name="id" value="{{ID}}">
-<p>날짜: {{WHEN}}</p>
 <input type="hidden" name="when" value="{{WHEN}}">
-<p>제목: <input type="text" name="title" value="{{TITLE}}" size="85"></p>
-<p>요약:<br> <textarea name="abstract" rows="14" cols="100%">{{ABSTRACT}}</textarea></p>
-<p>메모: {{MEMO}}<br>
-  <input name="memo" type="file"/>
-</p>
 
-<p>
-<span style="color:red">메모 업로드 문제</span>: pdf의 크기가 2MB보다
-크면 웹에서의 업로드가 제한됩니다.  그럴 경우 해당 디렉토리에
-파일(<code>YYMMDD_ID.pdf</code>)을 직접 복사해 주세요.<br>
-예) <code>/home/ropas/www/talk/register2/data/151225_skcho.pdf</code>
-</p>
+<table>
+<tr>
+  <td style="width:60px">발표자:</td>
+  <td>{{NAME}}</td>
+</tr>
+<tr>
+  <td>날짜:</td>
+  <td>{{WHEN}}</td>
+</tr>
+<tr>
+  <td>제목:</td>
+  <td><input type="text" class="fwidth" name="title" value="{{TITLE}}" ></td>
+</tr>
+<tr>
+  <td>요약:</td>
+  <td></td>
+</tr>
+<tr>
+  <td colspan="2">
+    <textarea name="abstract" class="fwidth" rows="14">{{ABSTRACT}}</textarea>
+  </td>
+</tr>
+<tr>
+  <td>메모:</td>
+  <td>{{MEMO}}<br>
+    <input name="memo" type="file"/></td>
+</tr>
+<tr>
+  <td colspan="2">
+    <span class="alert">메모 파일 크기 제한</span>: 메모 파일의 크기가
+    2MB보다 크면 웹에서의 업로드가 제한됩니다.  그럴 경우 해당
+    디렉토리에 파일(<code>YYMMDD_ID.pdf</code>)을 직접 복사해
+    주세요.<br>
+    예) <code>talk/register2/data/151225_skcho.pdf</code>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" class="submit-button">
+    <input type="submit" value="등록">
+  </td>
+</tr>
+</table>
 
-<input type="submit" value="등록" class="submit-button">
 </form>
+</div>

@@ -11,13 +11,15 @@ require_once __ROOT__ . "/lib/replace.php";
 
 ?>
 
+<div class="section">
 <p>모든 코멘트는 발표 전날 18:00에 이메일로 공지됩니다. 그 전까지는
 다른 사람의 코멘트를 볼 수 없습니다.  소신껏 코멘트해 주시길 바랍니다.</p>
+</div>
 
 <?php
 
 function entry(){
-
+  echo "<div class=\"section\">\n";
   echo "<h2>쇼앤텔 일정</h2>\n";
   echo "<p>괄호 안의 사람들이 코멘터입니다.</p>";
 
@@ -52,7 +54,7 @@ function entry(){
     echo "</li>\n";
   }
   echo "</ul>\n";
-
+  echo "</div>\n";
 }
 
 function reg(){
@@ -62,8 +64,9 @@ function reg(){
   $t = strtotime($date);
   $talk_data = get_talk_data_or_gen($t, $id);
   if(file_exists(gen_memo_filename($t, $id))){
-    $link = "http://ropas.snu.ac.kr/snt_pdfs2/" . date('ymd', $t) . "_$id.pdf";
-    $memo = "<a href=\"" . $link . "\">" . $link . "</a>";
+    $memo_filename = date('ymd', $t) . "_$id.pdf";
+    $link = "http://ropas.snu.ac.kr/snt_pdfs2/" . $memo_filename;
+    $memo = "<a href=\"" . $link . "\">" . $memo_filename . "</a>";
   }else{
     $memo = "등록된 메모가 없습니다.";
   }
