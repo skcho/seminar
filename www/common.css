@@ -1,13 +1,13 @@
 body {
-    color: #1A1A1A;
+    color:#1A1A1A;
     max-width:680px;
-    margin: 0 auto;
+    margin:0 auto;
 }
 
 h1 {
     font-weight:400;
     color:#5ea268;
-    text-align: center;
+    text-align:center;
 }
 
 h2 {
@@ -15,17 +15,17 @@ h2 {
 }
 
 a {
-    color: #1761A8;
-    text-decoration: none;
+    color:#1761A8;
+    text-decoration:none;
 }
 
 a:hover {
-    color: #2B75BC;
-    text-decoration: underline;
+    color:#2B75BC;
+    text-decoration:underline;
 }
 
 p,ul,ol,dl,code,pre,td {
-    line-height: 160%;
+    line-height:160%;
 }
 
 .section {
@@ -42,8 +42,8 @@ p,ul,ol,dl,code,pre,td {
 }
 
 .submit-button input{
-    height: 40px;
-    width: 80px;
+    height:40px;
+    width:80px;
 }
 
 table{
