@@ -76,7 +76,7 @@ function apply_exception($snts){
   return $snts;
 }
 
-function is_from($when, $t){
+function is_after($when, $t){
   $snt_day = time_of_when($when);
   if($snt_day >= $t) return true;
   else return false;
@@ -120,7 +120,7 @@ function get_schedule(){
   $snts = apply_exception($snts);
   $snts = array_filter($snts,
                        function($snt) use($t){
-                         return is_from($snt["when"], $t);
+                         return is_after($snt["when"], $t);
                        });
   $snts = array_slice($snts, 0, 10);
   $snts = set_speakers($snts);
