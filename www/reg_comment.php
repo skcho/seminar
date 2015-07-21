@@ -1,7 +1,4 @@
-<?php $title = "코멘트 등록"; require 'header.temp'; ?>
-
 <?php
-
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
@@ -9,6 +6,8 @@ require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/replace.php";
 
+$title = "코멘트 등록";
+require __ROOT__ . '/template/header.temp';
 ?>
 
 <div class="section">
@@ -81,11 +80,9 @@ function reg(){
   echo replace(__ROOT__ . "/template/reg_comment.temp", $arr);
 }
 
-if(my_key_exists("id", $_REQUEST)){
-  reg();
-}
+if(my_key_exists("id", $_REQUEST)) reg();
 entry();
 
-?>
+require __ROOT__ . '/template/footer.temp';
 
-<?php require 'footer.temp'; ?>
+?>

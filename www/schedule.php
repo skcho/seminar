@@ -1,13 +1,12 @@
-<?php $title = "쇼앤텔 일정 보기"; require 'header.temp'; ?>
-
 <?php
-
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
 require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/read_data.php";
 
+$title = "쇼앤텔 일정 보기";
+require __ROOT__ . '/template/header.temp';
 ?>
 
 <div class="section">
@@ -34,13 +33,13 @@ foreach(get_exception_conf() as $exc){
 }
 echo "</ul>\n";
 ?>
+
 </div>
 
 <div class="section">
 <h2>쇼앤텔 일정</h2>
 
 <?php
-
 $snts = get_schedule();
 echo "<ul>\n";
 foreach($snts as $key => $snt){
@@ -55,6 +54,7 @@ foreach($snts as $key => $snt){
 }
 echo "</ul>\n";
 ?>
+
 </div>
 
-<?php require 'footer.temp'; ?>
+<?php require __ROOT__ . '/template/footer.temp'; ?>

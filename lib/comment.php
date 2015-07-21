@@ -11,7 +11,7 @@ function html_of_comment($comment){
 
 function html_of_comments($comments){
   if(count($comments) === 0){
-    return "<p>No comments</p>";
+    return "<p>No comments registered</p>";
   }
   return implode("\n", array_map("html_of_comment", $comments));  
 }

@@ -1,4 +1,11 @@
-<?php $title = "쇼앤텔 관리 시스템"; require 'header_noback.temp'; ?>
+<?php
+if(!defined('__ROOT__'))
+  define('__ROOT__', realpath(dirname(dirname(__FILE__))));
+
+$title = "쇼앤텔 관리 시스템";
+require (__ROOT__ . '/template/header_noback.temp');
+?>
+
 <div class="section">
 <h2>일정 보기 및 등록</h2>
 
@@ -19,4 +26,5 @@
   <li>1일 전 18시, 코멘트 메일 발송</li>
 </ul>
 </div>
-<?php require 'footer.temp'; ?>
+
+<?php require __ROOT__ . '/template/footer.temp'; ?>

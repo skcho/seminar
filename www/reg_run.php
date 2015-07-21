@@ -1,5 +1,3 @@
-<?php $title = "등록 페이지"; require 'header.temp'; ?>
-
 <?php
 
 if(!defined('__ROOT__'))
@@ -8,6 +6,9 @@ if(!defined('__ROOT__'))
 require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/interactive.php";
 
+
+$title = "등록 페이지";
+require __ROOT__ . '/template/header.temp';
 
 function reg_result_pop_up($result){
   if($result) echo '<script>alert("등록 성공.")</script>';
@@ -70,6 +71,6 @@ function reg_comment(){
 if(my_key_exists("comment", $_REQUEST)) reg_comment();
 else reg_abstract();
 
-?>
+require __ROOT__ . '/template/footer.temp';
 
-<?php require 'footer.temp'; ?>
+?>
