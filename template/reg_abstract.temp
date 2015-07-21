@@ -39,7 +39,7 @@
     2MB보다 크면 웹에서의 업로드가 제한됩니다.  그럴 경우 해당
     디렉토리에 파일(<code>YYMMDD_ID.pdf</code>)을 직접 복사해
     주세요.<br>
-    예) <code>talk/register2/data/151225_skcho.pdf</code>
+    예) <code>snt_memo2/151225_skcho.pdf</code>
   </td>
 </tr>
 <tr>
