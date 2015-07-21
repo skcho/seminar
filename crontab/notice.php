@@ -26,7 +26,7 @@ function gen_talk_msg($is_fst, $t, $where, $who){
   if($is_fst) $pdf = "";
   else{
     $date = date('ymd', $t);
-    $pdf = "http://ropas.snu.ac.kr/snt_pdfs2/{$date}_$who.pdf";
+    $pdf = "http://ropas.snu.ac.kr/snt_memo2/{$date}_$who.pdf";
   }
 
   $src = array(
@@ -57,7 +57,7 @@ function gen_snt_msg($is_fst, $snt){
     $msg .= "Please leave comments by "
           . date('Y-m-d', strtotime('-1 day', $start_t))
           . " at 18:00.\n";
-    $msg .= "http://ropas.snu.ac.kr/talk/register2/reg_comment" . "\n";
+    $msg .= "http://ropas.snu.ac.kr/snt_system2/reg_comment" . "\n";
   }
 
   return $msg;

@@ -40,7 +40,7 @@ function reg(){
   $talk_data = get_talk_data_or_gen($t, $id);
   if(file_exists(gen_memo_filename($t, $id))){
     $memo_filename = date('ymd', $t) . "_$id.pdf";
-    $link = "http://ropas.snu.ac.kr/snt_pdfs2/" . $memo_filename;
+    $link = "http://ropas.snu.ac.kr/snt_memo2/" . $memo_filename;
     $memo = "<a href=\"" . $link . "\">" . $memo_filename . "</a>";
   }else{
     $memo = "등록된 메모가 없습니다.";
