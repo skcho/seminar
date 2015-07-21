@@ -11,6 +11,9 @@ require_once __ROOT__ . "/lib/replace.php";
 
 ?>
 
+<p>모든 코멘트는 발표 전날 18:00에 이메일로 공지됩니다. 그 전까지는
+다른 사람의 코멘트를 볼 수 없습니다.  소신껏 코멘트해 주시길 바랍니다.</p>
+
 <?php
 
 function entry(){
@@ -53,8 +56,6 @@ function entry(){
 }
 
 function reg(){
-
-  echo "<h2>코멘트 등록 양식</h2>\n";
 
   $id = $_REQUEST["id"];
   $date = $_REQUEST["date"];

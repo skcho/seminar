@@ -38,8 +38,6 @@ function entry(){
 
 function reg(){
 
-  echo "<h2>등록 양식</h2>\n";
-
   $id = $_REQUEST["id"];
   $date = $_REQUEST["date"];
   $t = strtotime($date);

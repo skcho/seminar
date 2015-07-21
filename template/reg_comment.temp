@@ -1,3 +1,5 @@
+<h2>코멘트 등록 양식</h2>
+
 <form action="reg_run.php" method="POST">
 <p>발표자: {{NAME}}</p>
 <input type="hidden" name="id" value="{{ID}}">

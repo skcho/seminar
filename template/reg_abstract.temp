@@ -1,3 +1,5 @@
+<h2>등록 양식</h2>
+
 <form enctype="multipart/form-data" action="reg_run.php" method="POST">
 <p>발표자: {{NAME}}</p>
 <input type="hidden" name="id" value="{{ID}}">
@@ -8,5 +10,13 @@
 <p>메모: {{MEMO}}<br>
   <input name="memo" type="file"/>
 </p>
+
+<p>
+<span style="color:red">메모 업로드 문제</span>: pdf의 크기가 2MB보다
+크면 웹에서의 업로드가 제한됩니다.  그럴 경우 해당 디렉토리에
+파일(<code>YYMMDD_ID.pdf</code>)을 직접 복사해 주세요.<br>
+예) <code>/home/ropas/www/talk/register2/data/151225_skcho.pdf</code>
+</p>
+
 <input type="submit" value="등록">
 </form>
