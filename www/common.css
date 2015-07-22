@@ -35,6 +35,9 @@ p,ul,ol,dl,code,pre,td {
 
 .fwidth {
     width:100%;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
 }
 
 .submit-button{
