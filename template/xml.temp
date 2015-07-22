@@ -9,5 +9,5 @@
   </r:abstract>
   <!--r:resource href="{{SLIDES_FILENAME}}">slides</r:resource-->
   <r:resource href="http://ropas.snu.ac.kr/snt_memo2/{{MEMO_FILENAME}}">short paper</r:resource>
-  <r:resource href="http://ropas.snu.ac.kr/snt_system2/view?id={{ID}}&amp;date={{DATE}}">comment</r:resource>
+  <r:resource href="http://ropas.snu.ac.kr/snt_system2/view_comment?id={{ID}}&amp;date={{DATE}}">comment</r:resource>
 </r:seminar>
