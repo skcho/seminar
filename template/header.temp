@@ -9,6 +9,6 @@
 
 <body>
 
-<div style="position:relative"><a href=".">홈으로</a></div>
+<div><a href=".">홈으로</a></div>
 
 <h1><?php echo $title;?></h1>
