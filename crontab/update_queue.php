@@ -15,16 +15,19 @@ function run(){
   $ropas_filename = __ROOT__ . "/conf/queue.ropas";
   $sf_filename = __ROOT__ . "/conf/queue.sf";
 
-  $queue_all = read_queue($all_filename);
-  $queue_ropas = read_queue($ropas_filename);
-  $queue_sf = read_queue($sf_filename);
+  $snts = snts_today();
+  if(count($snts) >= 1){
+    $queue_all = read_queue($all_filename);
+    $queue_ropas = read_queue($ropas_filename);
+    $queue_sf = read_queue($sf_filename);
 
-  foreach(snts_today() as $snt)
-    set_speaker($snt, $queue_all, $queue_ropas, $queue_sf);
+    foreach($snts as $snt)
+      set_speaker($snt, $queue_all, $queue_ropas, $queue_sf);
 
-  write_queue($all_filename, $queue_all);
-  write_queue($ropas_filename, $queue_ropas);
-  write_queue($sf_filename, $queue_sf);
+    write_queue($all_filename, $queue_all);
+    write_queue($ropas_filename, $queue_ropas);
+    write_queue($sf_filename, $queue_sf);
+  }
 }
 
 run();
