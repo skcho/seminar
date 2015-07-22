@@ -8,6 +8,7 @@ h1 {
     font-weight:400;
     color:#5ea268;
     text-align:center;
+    margin:50px 0px;            /* 상하, 좌우 */
 }
 
 h2 {
@@ -40,24 +41,30 @@ p,ul,ol,dl,code,pre,td {
     -moz-box-sizing: border-box;
 }
 
-.submit-button{
+.submit-button {
     text-align:center;
 }
 
-.submit-button input{
+.submit-button input {
     height:40px;
     width:80px;
     -webkit-appearance:button;
 }
 
-table{
+table {
     width:100%;
 }
 
-td{
+td {
     padding:5px 0px;            /* 상하, 좌우 */
 }
 
-.alert{
+.alert {
     color:#BF223D;
+}
+
+#to_home {
+    position:absolute;
+    top:0;
+    padding:10px;
 }
