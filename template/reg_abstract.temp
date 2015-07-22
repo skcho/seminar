@@ -1,7 +1,7 @@
 <div class="section">
 <h2>등록 양식</h2>
 
-<form enctype="multipart/form-data" action="reg_run.php" method="POST">
+<form enctype="multipart/form-data" action="reg_run" method="POST">
 
 <input type="hidden" name="id" value="{{ID}}">
 <input type="hidden" name="when" value="{{WHEN}}">
