@@ -16,7 +16,7 @@ require __ROOT__ . '/template/header_noback.temp';
 $id = $_REQUEST["id"];
 $t = strtotime($_REQUEST["date"]);
 
-if($id !== NULL) echo gen_msg($t, $id);
+if($id !== NULL) echo gen_comment_msg($t, $id);
 
 require __ROOT__ . '/template/footer.temp';
 ?>

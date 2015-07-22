@@ -20,11 +20,11 @@ require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/send_mail.php";
 require_once __ROOT__ . "/lib/comment.php";
 
-function gen_msgs($snt){
+function gen_total_msg($snt){
   $t = time_of_when($snt["when"]);
   $msg = "";
   foreach($snt["who"] as $id){
-    $msg .= gen_msg($t, $id);
+    $msg .= gen_comment_msg($t, $id);
   }
   return $msg;
 }
@@ -38,13 +38,13 @@ function send($msg){
 function auto(){
   $snts = snts_n_days_later(1);
   foreach($snts as $snt){
-    $msg = gen_msgs($snt);
+    $msg = gen_total_msg($snt);
     send($msg);
   }
 }
 
 function confirm_notice($snt){
-  $msg = gen_msgs($snt);
+  $msg = gen_total_msg($snt);
   echo_msg($msg);
   $confirm = ask_y_or_n("Are you sure to send the above message?");
   if($confirm){

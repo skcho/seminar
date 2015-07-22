@@ -21,7 +21,7 @@ function html_of_speaker($speaker){
   return "<h1 style=\"font-size: 1.5em;\">Comments for $name</h1>";
 }
 
-function gen_msg($t, $id){
+function gen_comment_msg($t, $id){
   $comments = get_comments($t, $id);
   $msg = html_of_speaker($id) . "\n";
   $msg .= html_of_comments($comments) . "\n";
