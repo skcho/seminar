@@ -49,8 +49,8 @@ function reg(){
   $arr = array("ID" => $id,
                "NAME" => get_member_name($id),
                "WHEN" => $date,
-               "TITLE" => $talk_data["title"],
-               "ABSTRACT" => $talk_data["abstract"],
+               "TITLE" => htmlspecialchars($talk_data["title"]),
+               "ABSTRACT" => htmlspecialchars($talk_data["abstract"]),
                "MEMO" => $memo,
   );
   echo replace(__ROOT__ . "/template/reg_abstract.temp", $arr);
