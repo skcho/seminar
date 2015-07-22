@@ -68,8 +68,10 @@ function reg_comment(){
   exit(1);
 }
 
+echo "<div class=\"section\">\n";
 if(my_key_exists("comment", $_REQUEST)) reg_comment();
 else reg_abstract();
+echo "</div>\n";
 
 require __ROOT__ . '/template/footer.temp';
 
