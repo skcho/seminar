@@ -56,7 +56,7 @@ function gen_snt_msg($is_fst, $snt){
     $msg .= $hr;
     $msg .= "Please leave comments by "
           . date('Y-m-d', strtotime('-1 day', $start_t))
-          . " at 18:00.\n";
+          . " 18:00.\n";
     $msg .= "http://ropas.snu.ac.kr/snt_system2/reg_comment" . "\n";
   }
 
