@@ -47,6 +47,7 @@ p,ul,ol,dl,code,pre,td {
 .submit-button input{
     height:40px;
     width:80px;
+    -webkit-appearance:button;
 }
 
 table{
