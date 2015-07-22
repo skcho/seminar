@@ -5,6 +5,7 @@ if(!defined('__ROOT__'))
 
 require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/interactive.php";
+require_once __ROOT__ . "/lib/log.php";
 
 
 $title = "등록 페이지";
@@ -33,7 +34,12 @@ function reg_abstract(){
     echo "<p>메모를 등록합니다.</p>\n";
     $memo_filename = gen_memo_filename($t, $id);
     $result2 = move_uploaded_file($_FILES["memo"]["tmp_name"], $memo_filename);
-    if($result2) chmod($memo_filename, 0664);
+    if($result2){
+      chmod($memo_filename, 0664);
+      my_log(__FILE__, $memo_filename . " updated\n");
+    }else{
+      my_log(__FILE__, $memo_filename . " update failed\n");
+    }
   }
 
   reg_result_pop_up($result1 && $result2);
