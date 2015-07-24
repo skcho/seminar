@@ -74,8 +74,8 @@ function send_commenter($snt, $commenter_info, $msg){
   }
   $all_email = array_map("get_member_email", $all);
   $mail = get_email_conf();
-  send_mailf( 'plain', $mail["from"], $all_email
-            , 'Show & Tell Commenter Notice', $msg );
+  send_mail( 'plain', $mail["from"], $all_email
+           , 'Show & Tell Commenter Notice', $msg );
 }
 
 function set_data($snt, $commenter_info){
