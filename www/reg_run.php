@@ -66,8 +66,10 @@ function reg_comment(&$ret_url){
 function echo_reg_result($reg_result, $ret_url){
   if($reg_result){
     echo "<p class=\"good\">짝짝짝! 등록 성공.</p>\n";
-    echo "<p>3초 후 <a href=\"$ret_url\">이전 페이지</a>로 돌아갑니다...</p>\n";
-    header("refresh:3; url=" . $ret_url);
+    echo "<p>3초 후 <a href=\"" . htmlspecialchars($ret_url)
+       . "\">이전 페이지</a>로 돌아갑니다...</p>\n";
+    echo "<script>setTimeout(function(){window.location.replace(\"" . $ret_url
+       . "\");}, 3000);</script>\n";
   }else{
     echo "<p class=\"alert\">등록 실패!</p>\n";
     echo "<p><a href=\"javascript:history.go(-1)\">뒤로 가기</a></p>\n";
