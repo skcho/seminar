@@ -11,17 +11,13 @@ require_once __ROOT__ . "/lib/log.php";
 $title = "등록 페이지";
 require __ROOT__ . '/template/header.temp';
 
-function reg_result_pop_up($result){
-  if($result) echo '<script>alert("등록 성공.")</script>';
-  else echo '<script>alert("등록 실패!")</script>';
-}
-
-function reg_abstract(){
+function reg_abstract(&$ret_url){
   echo "<p>발표 정보를 등록합니다.</p>\n";
 
   $id = $_REQUEST["id"];
   $when = $_REQUEST["when"];
   $t = strtotime($when);
+  $ret_url = "reg_abstract?id=" . $id . "&date=" . date('Y-m-d', $t);
 
   $talk_data = get_talk_data_or_gen($t, $id);
   $talk_data["title"] = $_REQUEST["title"];
@@ -42,36 +38,48 @@ function reg_abstract(){
     }
   }
 
-  reg_result_pop_up($result1 && $result2);
+  return ($result1 && $result2);
 }
 
-function reg_comment(){
+function reg_comment(&$ret_url){
   echo "<p>코멘트를 등록합니다.</p>\n";
 
   $id = $_REQUEST["id"];
   $when = $_REQUEST["when"];
   $t = strtotime($when);
+  $ret_url = "reg_comment?id=" . $id . "&date=" . date('Y-m-d', $t);
 
   $comment = $_REQUEST["comment"];
   if($comment === ""){
-    echo '<script>alert("빈 코멘트.  등록 실패!")</script>';
+    echo "<p>빈 코멘트입니다.</p>\n";
+    return false;
   }else{
     $talk_data = get_talk_data_or_gen($t, $id);
     $comments = $talk_data["comments"];
     array_push($comments, $comment);
     $talk_data["comments"] = $comments;
 
-    $result = put_talk_data($t, $id, $talk_data);
+    return put_talk_data($t, $id, $talk_data);
+  }
+}
 
-    reg_result_pop_up($result);
+function echo_reg_result($reg_result, $ret_url){
+  if($reg_result){
+    echo "<p class=\"good\">짝짝짝! 등록 성공.</p>\n";
+    echo "<p>3초 후 <a href=\"$ret_url\">이전 페이지</a>로 돌아갑니다...</p>\n";
+    header("refresh:3; url=" . $ret_url);
+  }else{
+    echo "<p class=\"alert\">등록 실패!</p>\n";
+    echo "<p><a href=\"javascript:history.go(-1)\">뒤로 가기</a></p>\n";
   }
 }
 
 echo "<div class=\"section\">\n";
-if(my_key_exists("comment", $_REQUEST)) reg_comment();
-else reg_abstract();
+$ret_url = "";
+if(my_key_exists("comment", $_REQUEST)) $reg_result = reg_comment($ret_url);
+else $reg_result = reg_abstract($ret_url);
+echo_reg_result($reg_result, $ret_url);
 echo "</div>\n";
-echo "<script>window.location = document.referrer;</script>\n";
 
 require __ROOT__ . '/template/footer.temp';
 
