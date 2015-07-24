@@ -43,8 +43,6 @@ function reg_abstract(){
   }
 
   reg_result_pop_up($result1 && $result2);
-
-  header("refresh:0; url=reg_abstract?id=$id&date=$when");
 }
 
 function reg_comment(){
@@ -67,14 +65,13 @@ function reg_comment(){
 
     reg_result_pop_up($result);
   }
-
-  header("refresh:0; url=reg_comment?id=$id&date=$when");
 }
 
 echo "<div class=\"section\">\n";
 if(my_key_exists("comment", $_REQUEST)) reg_comment();
 else reg_abstract();
 echo "</div>\n";
+echo "<script>window.location = document.referrer;</script>\n";
 
 require __ROOT__ . '/template/footer.temp';
 
