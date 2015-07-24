@@ -45,7 +45,6 @@ function reg_abstract(){
   reg_result_pop_up($result1 && $result2);
 
   header("refresh:0; url=reg_abstract?id=$id&date=$when");
-  exit(1);
 }
 
 function reg_comment(){
@@ -58,20 +57,18 @@ function reg_comment(){
   $comment = $_REQUEST["comment"];
   if($comment === ""){
     echo '<script>alert("빈 코멘트.  등록 실패!")</script>';
-    header("refresh:0; url=reg_comment?id=$id&date=$when");
-    exit(1);
+  }else{
+    $talk_data = get_talk_data_or_gen($t, $id);
+    $comments = $talk_data["comments"];
+    array_push($comments, $comment);
+    $talk_data["comments"] = $comments;
+
+    $result = put_talk_data($t, $id, $talk_data);
+
+    reg_result_pop_up($result);
   }
-  $talk_data = get_talk_data_or_gen($t, $id);
-  $comments = $talk_data["comments"];
-  array_push($comments, $comment);
-  $talk_data["comments"] = $comments;
-
-  $result = put_talk_data($t, $id, $talk_data);
-
-  reg_result_pop_up($result);
 
   header("refresh:0; url=reg_comment?id=$id&date=$when");
-  exit(1);
 }
 
 echo "<div class=\"section\">\n";
