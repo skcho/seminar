@@ -13,6 +13,6 @@
   ]
 , "email" :
   { "from" : {"name" : "Show & Tell 알리미", "email" : "seminarbot@ropas.snu.ac.kr"}
-  , "to" : ["skcho@ropas.snu.ac.kr", "csk1103@hotmail.com"]
+  , "to" : ["seminar@ropas.snu.ac.kr"]
   }
 }

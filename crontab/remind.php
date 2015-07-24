@@ -46,8 +46,7 @@ function send_remind($snt, $msg){
   $mail = get_email_conf();
   $emails = array_map( function($id){return get_member_email($id);}
                      , $snt["who"] );
-  /* TODO: uncomment before release */
-  // send_mail('plain', $mail["from"], $emails, 'Show & Tell Order Remind', $msg);
+  send_mail('plain', $mail["from"], $emails, 'Show & Tell Order Remind', $msg);
 }
 
 function auto(){
