@@ -13,6 +13,8 @@ require __ROOT__ . '/template/header.temp';
 <div class="section">
 <p>모든 코멘트는 발표 전날 18:00에 이메일로 공지됩니다. 그 전까지는
 다른 사람의 코멘트를 볼 수 없습니다.  소신껏 코멘트해 주시길 바랍니다.</p>
+
+<p>괄호 안의 사람들이 코멘터입니다.</p>
 </div>
 
 <?php
@@ -20,7 +22,6 @@ require __ROOT__ . '/template/header.temp';
 function entry(){
   echo "<div class=\"section\">\n";
   echo "<h2>쇼앤텔 일정</h2>\n";
-  echo "<p>괄호 안의 사람들이 코멘터입니다.</p>";
 
   $snts = get_schedule();
   echo "<ul>\n";
@@ -80,8 +81,26 @@ function reg(){
   echo replace(__ROOT__ . "/template/reg_comment.temp", $arr);
 }
 
+function commenters_today(){
+  echo "<div class=\"section\">\n";
+  echo "<h2>오늘의 코멘터</h2>\n";
+  $todays = get_commenters_today();
+  if(count($todays) === 0) echo "<p>없음.</p>\n";
+  else{
+    echo "<ul>\n";
+    foreach($todays as $speaker => $commenters){
+      echo "<li>";
+      echo $speaker . " (" . implode(", ", $commenters) . ")";
+      echo "</li>\n";
+    }
+    echo "</ul>\n";
+  }
+  echo "</div>\n";
+}
+
 if(my_key_exists("id", $_REQUEST)) reg();
 entry();
+commenters_today();
 
 require __ROOT__ . '/template/footer.temp';
 

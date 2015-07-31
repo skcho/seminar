@@ -5,6 +5,7 @@ if(!defined('__ROOT__'))
 
 require_once __ROOT__ . "/lib/file.php";
 require_once __ROOT__ . "/lib/log.php";
+require_once __ROOT__ . "/lib/queue.php";
 
 
 function get_conf(){
@@ -97,6 +98,19 @@ function get_talk_data_or_gen($t, $id){
 function put_talk_data($t, $id, $talk_data){
   $filename = gen_talk_data_filename($t, $id);
   return json_put_contents($filename, $talk_data);
+}
+
+function get_commenters_today(){
+  $t = time();
+  $filename = __ROOT__ . "/data/" . date('ymd', $t) . "_speaker";
+  $ids = read_queue($filename);
+  $commenters = array();
+  foreach($ids as $id){
+    $talk_data = get_talk_data($t, $id);
+    $commenters[get_member_name($id)] =
+    array_map("get_member_name", $talk_data["commenters"]);
+  }
+  return $commenters;
 }
 
 ?>
