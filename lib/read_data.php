@@ -102,13 +102,15 @@ function put_talk_data($t, $id, $talk_data){
 
 function get_commenters_today(){
   $t = time();
-  $filename = __ROOT__ . "/data/" . date('ymd', $t) . "_speaker";
-  $ids = read_queue($filename);
   $commenters = array();
-  foreach($ids as $id){
-    $talk_data = get_talk_data($t, $id);
-    $commenters[get_member_name($id)] =
-    array_map("get_member_name", $talk_data["commenters"]);
+  $filename = __ROOT__ . "/data/" . date('ymd', $t) . "_speaker";
+  if(file_exists($filename)){
+    $ids = read_queue($filename);
+    foreach($ids as $id){
+      $talk_data = get_talk_data($t, $id);
+      $commenters[get_member_name($id)] =
+      array_map("get_member_name", $talk_data["commenters"]);
+    }
   }
   return $commenters;
 }

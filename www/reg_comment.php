@@ -85,7 +85,7 @@ function commenters_today(){
   echo "<div class=\"section\">\n";
   echo "<h2>오늘의 코멘터</h2>\n";
   $todays = get_commenters_today();
-  if(count($todays) === 0) echo "<p>없음.</p>\n";
+  if(count($todays) === 0) echo "<p>오늘은 쇼앤텔이 없습니다.</p>\n";
   else{
     echo "<ul>\n";
     foreach($todays as $speaker => $commenters){
