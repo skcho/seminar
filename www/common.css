@@ -72,3 +72,8 @@ td {
     top:0;
     padding:10px;
 }
+
+.footnote {
+    font-size:small;
+    text-align:center;
+}
