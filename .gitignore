@@ -1,5 +1,6 @@
 .htaccess
 data/*.json
 data/*.pdf
+data/*_speaker
 log/*
 talk_root
