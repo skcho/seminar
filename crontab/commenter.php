@@ -59,6 +59,7 @@ function gen_msg($snt, $commenter_info){
                  array(
                    "talk_time" => date("Y-m-d H:i", $talk_time),
                    "comment_time" => date("Y-m-d H:i", $comment_time),
+                   "chair_info" => get_member_name($snt["chair"]),
                    "commenter_info" => $commenters_msg,
                  ));
   return $msg;
@@ -72,6 +73,7 @@ function send_commenter($snt, $commenter_info, $msg){
       array_push($all, $commenter);
     }
   }
+  if(!(in_array($snt["chair"], $all))) array_push($all, $snt["chair"]);
   $all_email = array_map("get_member_email", $all);
   $mail = get_email_conf();
   send_mail( 'plain', $mail["from"], $all_email

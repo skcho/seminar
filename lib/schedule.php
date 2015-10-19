@@ -82,7 +82,7 @@ function is_after($when, $t){
   else return false;
 }
 
-function set_speaker($snt, &$queue_all, &$queue_ropas, &$queue_sf){
+function set_speaker($snt, &$queue_all, &$queue_ropas, &$queue_sf, &$queue_chair){
   $speaker = array();
   foreach($snt["who_grp"] as $grp => $num){
     if($grp === "all"){
@@ -97,7 +97,10 @@ function set_speaker($snt, &$queue_all, &$queue_ropas, &$queue_sf){
     }
   }
 
+  $chair = pop_and_push($queue_chair, 1, $speaker);
+
   $snt["who"] = $speaker;
+  $snt["chair"] = $chair[0];
   return $snt;
 }
 
@@ -105,9 +108,11 @@ function set_speakers($snts){
   $queue_all = read_queue(__ROOT__ . "/conf/queue.all");
   $queue_ropas = read_queue(__ROOT__ . "/conf/queue.ropas");
   $queue_sf = read_queue(__ROOT__ . "/conf/queue.sf");
+  $queue_chair = read_queue(__ROOT__ . "/conf/queue.chair");
 
-  $iter = function($snt) use(&$queue_all, &$queue_ropas, &$queue_sf){
-    return set_speaker($snt, $queue_all, $queue_ropas, $queue_sf);
+  $iter =
+    function($snt) use(&$queue_all, &$queue_ropas, &$queue_sf, &$queue_chair){
+    return set_speaker($snt, $queue_all, $queue_ropas, $queue_sf, $queue_chair);
   };
   $snts = array_map($iter, $snts);
   return $snts;

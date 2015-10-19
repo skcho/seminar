@@ -2,6 +2,8 @@ Dear commenters,
 
 You are supposed to comment on the talk on {{talk_time}}.
 
+Chair: {{chair_info}}
+
 [SPEAKER]: [COMMENTERS]
 {{commenter_info}}
 Please upload comments by {{comment_time}}.

@@ -44,7 +44,8 @@ $snts = get_schedule();
 echo "<ul>\n";
 foreach($snts as $key => $snt){
   echo "<li>" . date('Y-m-d H:i', time_of_when($snt["when"]))
-     . " @ " . $snt["where"] . "\n";
+     . " @ " . $snt["where"] . "<br>\n";
+  echo "의장: " . get_member_name($snt["chair"]) . "\n";
   echo "<ul>\n";
   foreach($snt["who"] as $id){
     echo "<li>" . get_member_name($id) . "</li>\n";
