@@ -10,6 +10,32 @@ require __ROOT__ . '/template/header.temp';
 ?>
 
 <div class="section">
+<h2>오늘의 쇼앤텔</h2>
+
+<?php
+function commenters_today(){
+  $todays = get_commenters_today();
+  if(count($todays) === 0) echo "<p>오늘은 쇼앤텔이 없습니다.</p>\n";
+  else{
+    foreach($todays as $today){
+      echo "<p>의장: " . $today["chair"] . "</p>\n";
+      echo "<p>발표자(코멘터): </p>\n";
+      echo "<ul>\n";
+      foreach($today["commenters"] as $speaker => $commenters){
+        echo "<li>";
+        echo $speaker . " (" . implode(", ", $commenters) . ")";
+        echo "</li>\n";
+      }
+      echo "</ul>\n";
+    }
+  }
+}
+commenters_today();
+?>
+
+</div>
+
+<div class="section">
 <h2>변경 사항</h2>
 
 <?php

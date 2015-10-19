@@ -81,29 +81,8 @@ function reg(){
   echo replace(__ROOT__ . "/template/reg_comment.temp", $arr);
 }
 
-function commenters_today(){
-  echo "<div class=\"section\">\n";
-  echo "<h2>오늘의 의장/코멘터</h2>\n";
-  $todays = get_commenters_today();
-  if(count($todays) === 0) echo "<p>오늘은 쇼앤텔이 없습니다.</p>\n";
-  else{
-    foreach($todays as $today){
-      echo "<ul>\n";
-      echo "<li>의장: " . $today["chair"] . "</li>\n";
-      foreach($today["commenters"] as $speaker => $commenters){
-        echo "<li>";
-        echo $speaker . " (" . implode(", ", $commenters) . ")";
-        echo "</li>\n";
-      }
-      echo "</ul>\n";
-    }
-  }
-  echo "</div>\n";
-}
-
 if(my_key_exists("id", $_REQUEST)) reg();
 entry();
-commenters_today();
 
 require __ROOT__ . '/template/footer.temp';
 
