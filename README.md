@@ -26,7 +26,7 @@ Seminar notice system
 
 ## Crontab 설정
 
-* 11일 전 9시, 세미나 리마인드 메일 발송 `remind.php`
+* 11일 전 9시, 세미나 등록 리마인드 메일 발송 `remind.php`
 * 6일 전 0시, 알림 메일 발송 `notice.php`
 * 1일 전 9시, 알림 메일 발송 `notice.php`
 * 0일 0시, 세미나 큐 업데이트 `update_queue.php`
