@@ -7,11 +7,12 @@ require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/replace.php";
 
 $title = "발표 정보 등록";
+$group = get_group();
 require __ROOT__ . '/template/header.temp';
 
 function entry(){
   echo "<div class=\"section\">\n";
-  echo "<h2>쇼앤텔 일정</h2>\n";
+  echo "<h2>일정</h2>\n";
 
   $snts = get_schedule();
   echo "<ul>\n";
@@ -38,13 +39,6 @@ function reg(){
   $date = $_REQUEST["date"];
   $t = strtotime($date);
   $talk_data = get_talk_data_or_gen($t, $id);
-  if(file_exists(gen_memo_filename($t, $id))){
-    $memo_filename = date('ymd', $t) . "_$id.pdf";
-    $link = "http://ropas.snu.ac.kr/snt_memo2/" . $memo_filename;
-    $memo = "<a href=\"" . $link . "\">" . $memo_filename . "</a>";
-  }else{
-    $memo = "등록된 메모가 없습니다.";
-  }
 
   $arr = array("ID" => $id,
                "NAME" => get_member_name($id),

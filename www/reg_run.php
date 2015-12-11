@@ -7,8 +7,8 @@ require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/interactive.php";
 require_once __ROOT__ . "/lib/log.php";
 
-
 $title = "등록 페이지";
+$group = get_group();
 require __ROOT__ . '/template/header.temp';
 
 function reg_abstract(&$ret_url){
@@ -39,28 +39,6 @@ function reg_abstract(&$ret_url){
   }
 
   return ($result1 && $result2);
-}
-
-function reg_comment(&$ret_url){
-  echo "<p>코멘트를 등록합니다.</p>\n";
-
-  $id = $_REQUEST["id"];
-  $when = $_REQUEST["when"];
-  $t = strtotime($when);
-  $ret_url = "reg_comment?id=" . $id . "&date=" . date('Y-m-d', $t);
-
-  $comment = $_REQUEST["comment"];
-  if($comment === ""){
-    echo "<p>빈 코멘트입니다.</p>\n";
-    return false;
-  }else{
-    $talk_data = get_talk_data_or_gen($t, $id);
-    $comments = $talk_data["comments"];
-    array_push($comments, $comment);
-    $talk_data["comments"] = $comments;
-
-    return put_talk_data($t, $id, $talk_data);
-  }
 }
 
 function echo_reg_result($reg_result, $ret_url){

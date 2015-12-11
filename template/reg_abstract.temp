@@ -29,20 +29,6 @@
   </td>
 </tr>
 <tr>
-  <td>메모:</td>
-  <td>{{MEMO}}<br>
-    <input name="memo" type="file"/></td>
-</tr>
-<tr>
-  <td colspan="2">
-    <span class="alert">메모 파일 크기 제한</span>: 메모 파일의 크기가
-    2MB보다 크면 웹에서의 업로드가 제한됩니다.  그럴 경우 해당
-    디렉토리에 파일(<code>YYMMDD_ID.pdf</code>)을 직접 복사해
-    주세요.<br>
-    예) <code>snt_memo2/151225_skcho.pdf</code>
-  </td>
-</tr>
-<tr>
   <td colspan="2" class="submit-button">
     <input type="submit" value="등록">
   </td>

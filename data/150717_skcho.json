@@ -1,8 +1,0 @@
-{ "title" : "escaped title"
-, "abstract" : "escaped abstract"
-, "commenters" : ["jgkim", "ykkim", "wslee"]
-, "comments" :
-  [ "escaped comments1"
-  , "escaped comments2"
-  ]
-}

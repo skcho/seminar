@@ -1,6 +1,6 @@
 <?php
 
-/* Remind S&T
+/* Remind seminar registration
 
    1. If it runs automatically,
    > php remind.php auto
@@ -38,6 +38,7 @@ function gen_msg($snt){
                    "talk_time" => date('Y-m-d', $talk_time),
                    "abs_time" => date('Y-m-d H:i', $abs_time),
                    "memo_time" => date('Y-m-d H:i', $memo_time),
+                   "reg_addr" => get_web(),
                  ));
   return $msg;
 }
@@ -46,7 +47,7 @@ function send_remind($snt, $msg){
   $mail = get_email_conf();
   $emails = array_map( function($id){return get_member_email($id);}
                      , $snt["who"] );
-  send_mail('plain', $mail["from"], $emails, 'Show & Tell Order Remind', $msg);
+  send_mail('plain', $mail["from"], $emails, 'Seminar Registration Remind', $msg);
 }
 
 function auto(){
@@ -65,12 +66,12 @@ function confirm_remind($snt){
     echo "Remind mail will be sent.\n\n";
     send_remind($snt, $msg);
   }else{
-    echo "S&T remind is cancelled.\n";
+    echo "Seminar remind is cancelled.\n";
   }
 }
 
 function manual(){
-  echo "Welcome to S&T remind system.\n\n";
+  echo "Welcome to seminar remind system.\n\n";
   $snt = select_snt();
   confirm_remind($snt);
   echo "Bye.\n";

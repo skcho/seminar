@@ -1,6 +1,6 @@
 <div class="section footnote">
 <hr>
-SoFA
+<?php echo $group;?>
 </div>
 </body>
 </html>

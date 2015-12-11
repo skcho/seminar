@@ -13,6 +13,16 @@ function get_conf(){
   return $conf;
 }
 
+function get_group(){
+  $conf = get_conf();
+  return $conf["group"];
+}
+
+function get_web(){
+  $conf = get_conf();
+  return $conf["web"];
+}
+
 function get_default_conf(){
   $conf = get_conf();
   return $conf["default"];
@@ -57,11 +67,6 @@ function get_member_email($id){
   return $member["email"];
 }
 
-function get_member_lab($id){
-  $member = get_member($id);
-  return $member["lab"];
-}
-
 function gen_data_filename($t, $id, $ext){
   $date = date('ymd', $t);
   return __ROOT__ . "/data/{$date}_$id." . $ext;
@@ -69,10 +74,6 @@ function gen_data_filename($t, $id, $ext){
 
 function gen_talk_data_filename($t, $id){
   return gen_data_filename($t, $id, "json");
-}
-
-function gen_memo_filename($t, $id){
-  return gen_data_filename($t, $id, "pdf");
 }
 
 function get_talk_data($t, $id){
@@ -88,8 +89,6 @@ function get_talk_data_or_gen($t, $id){
     $contents = array(
       "title" => "",
       "abstract" => "",
-      "commenters" => array(),
-      "comments" => array(),
     );
     return $contents;
   }
@@ -105,31 +104,10 @@ function get_speaker_data($filename){
   else return array();
 }
 
-function put_speaker_data($filename, $chair, $speakers){
+function put_speaker_data($filename, $speakers){
   $data = get_speaker_data($filename);
-  array_push($data, array("chair" => $chair, "speakers" => $speakers));
+  array_push($data, array("speakers" => $speakers));
   return json_put_contents($filename, $data);
-}
-
-function get_commenters_today(){
-  $cmtrs_all = array();
-  $t = time();
-  $filename = __ROOT__ . "/data/" . date('ymd', $t) . "_speaker.json";
-  if(file_exists($filename)){
-    $talks = json_get_contents($filename);
-    foreach($talks as $talk){
-      $cmtrs_of_talk = array();
-      foreach($talk["speakers"] as $id){
-        $talk_data = get_talk_data($t, $id);
-        $cmtrs_of_talk[get_member_name($id)] =
-          array_map("get_member_name", $talk_data["commenters"]);
-      }
-      $chair_cmtrs = array("chair" => get_member_name($talk["chair"]),
-                           "commenters" => $cmtrs_of_talk);
-      array_push($cmtrs_all, $chair_cmtrs);
-    }
-  }
-  return $cmtrs_all;
 }
 
 ?>

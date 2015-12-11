@@ -1,18 +1,31 @@
-{ "default" :
+{ "group" : "PL lab"
+, "web" : "http://ropas.snu.ac.kr/~skcho/seminar2/"
+, "default" :
   { "when" : {"day" : "Friday", "hour" : 9, "min" : 0}
   , "where" : "Bldg 302, Rm 309"
-  , "who_grp" : {"all" : 0, "ropas" : 2, "sf" : 1}
+  , "#talks" : 3
   }
 , "exception" :
-  [ { "mode" : "remove"
-    , "when" : {"year" : 2015, "month" : 9, "day" : 25, "hour" : 9, "min" : 0}
+  [ { "mode" : "add"
+    , "when" : {"year" : 2016, "month" : 1, "day" : 3, "hour" : 9, "min" : 0}
+    , "where" : "Bldg 302, Rm 310"
+    , "#talks" : 2
     }
   , { "mode" : "remove"
-    , "when" : {"year" : 2015, "month" : 12, "day" : 25, "hour" : 9, "min" : 0}
+    , "when" : {"year" : 2016, "month" : 1, "day" : 8, "hour" : 9, "min" : 0}
+    }
+  , { "mode" : "remove"
+    , "when" : {"year" : 2015, "month" : 12, "day" : 11, "hour" : 9, "min" : 0}
+    }
+  , { "mode" : "modify"
+    , "from" : {"year" : 2016, "month" : 1, "day" : 15, "hour" : 9, "min" : 0}
+    , "when" : {"year" : 2015, "month" : 12, "day" : 22, "hour" : 15, "min" : 0}
+    , "where" : "Bldg 302, Rm 318"
+    , "#talks" : 4
     }
   ]
 , "email" :
-  { "from" : {"name" : "Show & Tell 알리미", "email" : "seminarbot@ropas.snu.ac.kr"}
-  , "to" : ["seminar@ropas.snu.ac.kr"]
+  { "from" : {"name" : "seminarbot", "email" : "seminarbot@ropas.snu.ac.kr"}
+  , "to" : ["skcho@ropas.snu.ac.kr", "csk1103@hotmail.com"]
   }
 }

@@ -24,7 +24,7 @@ function get_default_snts($n){
           "min" => $default["when"]["min"],
         ),
         "where" => $default["where"],
-        "who_grp" => $default["who_grp"],
+        "#talks" => $default["#talks"],
       );
       array_push($snts, $snt);
       $n = $n - 1;
@@ -38,7 +38,7 @@ function add_snt($snts, $exc){
   $snt = array(
     "when" => $exc["when"],
     "where" => $exc["where"],
-    "who_grp" => $exc["who_grp"],
+    "#talks" => $exc["#talks"],
   );
   array_push($snts, $snt);
   return $snts;
@@ -82,43 +82,20 @@ function is_after($when, $t){
   else return false;
 }
 
-function set_speaker($snt, &$queue_all, &$queue_ropas, &$queue_sf, &$queue_chair){
-  $speaker = array();
-  foreach($snt["who_grp"] as $grp => $num){
-    if($grp === "all"){
-      $speaker = array_merge($speaker, pop_and_push($queue_all, $num));
-    }else if($grp === "ropas"){
-      $speaker = array_merge($speaker, pop_and_push($queue_ropas, $num));
-    }else if($grp === "sf"){
-      $speaker = array_merge($speaker, pop_and_push($queue_sf, $num));
-    }else{
-      my_log(__FILE__, "Invalid group name\n");
-      exit(1);
-    }
-  }
-
-  $chair = pop_and_push($queue_chair, 1, $speaker);
-
-  $snt["who"] = $speaker;
-  $snt["chair"] = $chair[0];
+function set_speaker($snt, &$queue){
+  $snt["who"] = pop_and_push($queue, $snt["#talks"]);
   return $snt;
 }
 
 function set_speakers($snts){
-  $queue_all = read_queue(__ROOT__ . "/conf/queue.all");
-  $queue_ropas = read_queue(__ROOT__ . "/conf/queue.ropas");
-  $queue_sf = read_queue(__ROOT__ . "/conf/queue.sf");
-  $queue_chair = read_queue(__ROOT__ . "/conf/queue.chair");
+  $queue = read_queue(__ROOT__ . "/conf/queue");
 
-  $iter =
-    function($snt) use(&$queue_all, &$queue_ropas, &$queue_sf, &$queue_chair){
-    return set_speaker($snt, $queue_all, $queue_ropas, $queue_sf, $queue_chair);
-  };
+  $iter = function($snt) use(&$queue){ return set_speaker($snt, $queue); };
   $snts = array_map($iter, $snts);
   return $snts;
 }
 
-/* Return following 10 S&Ts from tomorrow */
+/* Return following 10 seminars from tomorrow */
 function get_schedule(){
   $t = mktime(0, 0, 0, date('m'), date('d') + 1, date('Y'));
   $snts = get_default_snts(30);
@@ -132,12 +109,13 @@ function get_schedule(){
   return $snts;
 }
 
-/* Return the S&T on n days later
+/* Return the seminars on n days later
 
    CUATION: n should be bigger than 0
 
-   CAUTION: The return type is array of S&T, not an S&T, because there
-   may be more than one S&T in a day, by any chance.  */
+   CAUTION: The return type is array of seminars, not a sminar,
+   because there may be more than one seminar in a day, by any chance.
+   */
 function snts_n_days_later($n){
   if($n <= 0){
     my_log(__FILE__, "n should be bigger than 0\n");
@@ -168,14 +146,14 @@ function snts_today(){
   return $snts;
 }
 
-/* Ask to select a S&T in command line */
+/* Ask to select a seminar in command line */
 function select_snt(){
   $snts = get_schedule();
   foreach($snts as $key => $snt){
     echo ("$key) " . date('Y-m-d H:i', time_of_when($snt["when"])) . "\n");
   }
   echo "\n";
-  echo "Select a S&T (x to exit): ";
+  echo "Select a seminar (x to exit): ";
   $input_str = my_fgets();
   echo "\n";
 
@@ -184,7 +162,7 @@ function select_snt(){
     exit(0);
   }else if(my_key_exists($input_str, $snts)){
     $snt = $snts[(int)$input_str];
-    echo ( "The S&T on "
+    echo ( "The seminar on "
          . date('Y-m-d H:i', time_of_when($snt["when"]))
          . " is selected.\n\n" );
     return $snt;
