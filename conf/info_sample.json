@@ -1,4 +1,5 @@
 { "group" : "PL lab"
+, "web" : "http://ropas.snu.ac.kr/~skcho/seminar2/"
 , "default" :
   { "when" : {"day" : "Friday", "hour" : 9, "min" : 0}
   , "where" : "Bldg 302, Rm 309"

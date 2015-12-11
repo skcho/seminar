@@ -24,7 +24,8 @@ require (__ROOT__ . '/template/header_noback.temp');
 
 <ul>
   <li>D-11 09:00, 발표자 리마인드</li>
-  <li>D-6 00:00, 발표 정보 (제목/요약)</li>
+  <li>D-6 00:00, 발표 공지</li>
+  <li>D-1 09:00, 발표 공지</li>
 </ul>
 
 </div>

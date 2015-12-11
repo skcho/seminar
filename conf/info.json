@@ -7,21 +7,18 @@
   }
 , "exception" :
   [ { "mode" : "add"
-    , "when" : {"year" : 2016, "month" : 1, "day" : 3, "hour" : 9, "min" : 0}
+    , "when" : {"year" : 2015, "month" : 7, "day" : 21, "hour" : 9, "min" : 0}
     , "where" : "Bldg 302, Rm 310"
     , "#talks" : 2
     }
   , { "mode" : "remove"
-    , "when" : {"year" : 2016, "month" : 1, "day" : 8, "hour" : 9, "min" : 0}
-    }
-  , { "mode" : "remove"
-    , "when" : {"year" : 2015, "month" : 12, "day" : 11, "hour" : 9, "min" : 0}
+    , "when" : {"year" : 2015, "month" : 7, "day" : 25, "hour" : 9, "min" : 0}
     }
   , { "mode" : "modify"
-    , "from" : {"year" : 2016, "month" : 1, "day" : 15, "hour" : 9, "min" : 0}
-    , "when" : {"year" : 2015, "month" : 12, "day" : 22, "hour" : 15, "min" : 0}
-    , "where" : "Bldg 302, Rm 318"
-    , "#talks" : 4
+    , "from" : {"year" : 2015, "month" : 7, "day" : 31, "hour" : 9, "min" : 0}
+    , "when" : {"year" : 2015, "month" : 7, "day" : 31, "hour" : 15, "min" : 0}
+    , "where" : "Bldg 302, Rm 310"
+    , "#talks" : 2
     }
   ]
 , "email" :
