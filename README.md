@@ -31,7 +31,7 @@ Seminar notice system
 * 1일 전 9시, 알림 메일 발송 `notice.php`
 * 0일 0시, 세미나 큐 업데이트 `update_queue.php`
 
-seminarbot이 위의 시간에 명령을 수행하도록 crontab을 다음과 같이 설정한다.
+seminarbot이 위의 시간에 명령을 수행하도록 crontab을 다음과 같이 설정한다.  단, seminar가 설치된 절대경로를 알맞게 수정한다.
 
     0	0	*	*	*	php /home/skcho/seminar/crontab/update_queue.php && php /home/skcho/seminar/crontab/notice.php 6
     0	9	*	*	*	php /home/skcho/seminar/crontab/notice.php 1
