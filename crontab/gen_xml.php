@@ -5,17 +5,11 @@ if(!defined('__ROOT__'))
 
 require_once __ROOT__ . "/lib/vocab.php";
 require_once __ROOT__ . "/lib/file.php";
-require_once __ROOT__ . "/lib/interactive.php";
 require_once __ROOT__ . "/lib/log.php";
 require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/replace.php";
 require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/send_mail.php";
-
-
-function markdown($msg){
-  return $msg;
-}
 
 function run_talk($snt, $n, $t, $id){
   $talk_data = get_talk_data($t, $id);
