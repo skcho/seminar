@@ -13,6 +13,7 @@
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
+require_once __ROOT__ . "/lib/vocab.php";
 require_once __ROOT__ . "/lib/interactive.php";
 require_once __ROOT__ . "/lib/log.php";
 require_once __ROOT__ . "/lib/read_data.php";

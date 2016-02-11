@@ -3,9 +3,11 @@
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
+require_once __ROOT__ . "/lib/vocab.php";
 require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/interactive.php";
 require_once __ROOT__ . "/lib/log.php";
+require_once __ROOT__ . "/www/validate_input.php";
 
 
 $title = "등록 페이지";
@@ -14,8 +16,8 @@ require __ROOT__ . '/template/header.temp';
 function reg_abstract(&$ret_url){
   echo "<p>발표 정보를 등록합니다.</p>\n";
 
-  $id = $_REQUEST["id"];
-  $when = $_REQUEST["when"];
+  $id = get_valid_id($_REQUEST["id"]);
+  $when = get_valid_time($_REQUEST["when"]);
   $t = strtotime($when);
   $ret_url = "reg_abstract?id=" . $id . "&date=" . date('Y-m-d', $t);
 
@@ -44,8 +46,8 @@ function reg_abstract(&$ret_url){
 function reg_comment(&$ret_url){
   echo "<p>코멘트를 등록합니다.</p>\n";
 
-  $id = $_REQUEST["id"];
-  $when = $_REQUEST["when"];
+  $id = get_valid_id($_REQUEST["id"]);
+  $when = get_valid_time($_REQUEST["when"]);
   $t = strtotime($when);
   $ret_url = "reg_comment?id=" . $id . "&date=" . date('Y-m-d', $t);
 

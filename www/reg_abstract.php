@@ -2,9 +2,11 @@
 if(!defined('__ROOT__'))
   define('__ROOT__', realpath(dirname(dirname(__FILE__))));
 
+require_once __ROOT__ . "/lib/vocab.php";
 require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/replace.php";
+require_once __ROOT__ . "/www/validate_input.php";
 
 $title = "발표 정보 등록";
 require __ROOT__ . '/template/header.temp';
@@ -34,8 +36,8 @@ function entry(){
 }
 
 function reg(){
-  $id = $_REQUEST["id"];
-  $date = $_REQUEST["date"];
+  $id = get_valid_id($_REQUEST["id"]);
+  $date = get_valid_date($_REQUEST["date"]);
   $t = strtotime($date);
   $talk_data = get_talk_data_or_gen($t, $id);
   if(file_exists(gen_memo_filename($t, $id))){
@@ -60,4 +62,3 @@ if(my_key_exists("id", $_REQUEST)) reg();
 entry();
 
 require __ROOT__ . '/template/footer.temp';
-?>
