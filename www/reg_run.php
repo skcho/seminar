@@ -85,5 +85,3 @@ echo_reg_result($reg_result, $ret_url);
 echo "</div>\n";
 
 require __ROOT__ . '/template/footer.temp';
-
-?>

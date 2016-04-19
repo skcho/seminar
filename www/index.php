@@ -30,4 +30,4 @@ require (__ROOT__ . '/template/header_noback.temp');
 
 </div>
 
-<?php require __ROOT__ . '/template/footer.temp'; ?>
+<?php require __ROOT__ . '/template/footer.temp';

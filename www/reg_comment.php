@@ -87,5 +87,3 @@ if(my_key_exists("id", $_REQUEST)) reg();
 entry();
 
 require __ROOT__ . '/template/footer.temp';
-
-?>

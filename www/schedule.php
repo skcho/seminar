@@ -85,4 +85,4 @@ echo "</ul>\n";
 
 </div>
 
-<?php require __ROOT__ . '/template/footer.temp'; ?>
+<?php require __ROOT__ . '/template/footer.temp';
