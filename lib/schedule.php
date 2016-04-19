@@ -193,5 +193,3 @@ function select_snt(){
     exit(1);
   }
 }
-
-?>

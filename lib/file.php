@@ -34,5 +34,3 @@ function json_get_contents($filename){
 function json_put_contents($filename, $arr){
   return my_file_put_contents($filename, json_encode($arr));
 }
-
-?>

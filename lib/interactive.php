@@ -24,5 +24,3 @@ function echo_msg($msg){
   echo $msg;
   echo "[MESSAGE END]\n\n";
 }
-
-?>

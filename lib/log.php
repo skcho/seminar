@@ -16,5 +16,3 @@ function my_log($php_file, $msg){
   file_put_contents(__ROOT__ . "/log/$log_file", $msg, FILE_APPEND)
     or die("Unable to open log file!");
 }
-
-?>

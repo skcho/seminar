@@ -27,5 +27,3 @@ function gen_comment_msg($t, $id){
   $msg .= html_of_comments($comments) . "\n";
   return $msg;
 }
-
-?>

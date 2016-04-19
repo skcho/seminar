@@ -113,5 +113,3 @@ else{
   my_log(__FILE__, "Command arguments are invalid\n");
   exit(1);
 }
-
-?>

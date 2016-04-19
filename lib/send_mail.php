@@ -27,5 +27,3 @@ function send_mail($mode, $from, $to, $subj, $msg){
     exit(1);
   }
 }
-
-?>

@@ -12,5 +12,3 @@ function replace($filename, $src){
     $msg = str_replace("{{" . $key . "}}", $value, $msg);
   return $msg;
 }
-
-?>

@@ -37,5 +37,3 @@ function pop_and_push(&$queue, $num, $except = array()){
 
   return $elts;
 }
-
-?>

@@ -131,5 +131,3 @@ function get_commenters_today(){
   }
   return $cmtrs_all;
 }
-
-?>
