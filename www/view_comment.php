@@ -8,7 +8,7 @@ require_once __ROOT__ . "/lib/replace.php";
 require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/send_mail.php";
 require_once __ROOT__ . "/lib/comment.php";
-require_once __ROOT__ . "/www/validate_input.php";
+require_once __ROOT__ . "/lib/validate_input.php";
 
 $title = "코멘트 보기";
 require __ROOT__ . '/template/header_noback.temp';

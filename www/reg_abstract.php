@@ -6,7 +6,7 @@ require_once __ROOT__ . "/lib/vocab.php";
 require_once __ROOT__ . "/lib/schedule.php";
 require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/replace.php";
-require_once __ROOT__ . "/www/validate_input.php";
+require_once __ROOT__ . "/lib/validate_input.php";
 
 $title = "발표 정보 등록";
 require __ROOT__ . '/template/header.temp';

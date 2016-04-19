@@ -6,7 +6,7 @@ if(!defined('__ROOT__'))
 require_once __ROOT__ . "/lib/vocab.php";
 require_once __ROOT__ . "/lib/read_data.php";
 require_once __ROOT__ . "/lib/log.php";
-require_once __ROOT__ . "/www/validate_input.php";
+require_once __ROOT__ . "/lib/validate_input.php";
 
 
 $title = "등록 페이지";
